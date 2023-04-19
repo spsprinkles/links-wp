@@ -1,7 +1,28 @@
+/** Links Webpart */
+.links-wp {
+    display: flex;
+}
+
 /** Link Icon */
 .link-icon {
     background-color: blue;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 120px;
+    margin: 5px;
     width: 100px;
+
+    svg {
+        margin: 5px 10px;
+        path {
+            fill: white;
+        }
+    }
+}
+
+/** Link Text */
+.link-text {
+    margin: auto;
 }

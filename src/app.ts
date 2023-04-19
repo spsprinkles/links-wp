@@ -15,6 +15,9 @@ export class App {
         }
         // Else, ensure links exist
         else if (DataSource.Links && DataSource.Links.length > 0) {
+            // Set the class name
+            el.classList.add("links-wp");
+
             // Render the dashboard
             this.render(el);
         }
@@ -62,6 +65,13 @@ export class App {
 
             // Add the icon
             elLink.appendChild(svgIcon);
+
+            // Get the path element
+            let elSvgPath = svgIcon.querySelector("path");
+            if (elSvgPath) {
+                // Clear the color
+                elSvgPath.removeAttribute("fill");
+            }
 
             // Add the text
             let elText = document.createElement("div");

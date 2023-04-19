@@ -1,0 +1,40 @@
+{
+  "name": "links-wp",
+  "version": "1.0.0",
+  "description": "A links webpart.",
+  "main": "src/index.ts",
+  "scripts": {
+    "all": "npm run build && npm run prod",
+    "build": "webpack --mode=development",
+    "prod": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spsprinkles/links-wp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spsprinkles/links-wp/issues"
+  },
+  "homepage": "https://github.com/spsprinkles/links-wp#readme",
+  "dependencies": {
+    "gd-sprest": "^7.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "html-loader": "^4.2.0",
+    "i": "^0.3.7",
+    "npm": "^9.6.4",
+    "sass": "^1.62.0",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.1"
+  }
+}

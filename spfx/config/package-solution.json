@@ -3,7 +3,7 @@
   "solution": {
     "name": "links-web-part-client-side-solution",
     "id": "2c1b46b1-7933-4a0f-a246-423c8f623a8c",
-    "version": "1.0.0.0",
+    "version": "0.0.0.1",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -35,6 +35,6 @@
     ]
   },
   "paths": {
-    "zippedPackage": "solution/links-web-part.sppkg"
+    "zippedPackage": "../../dist/links-wp.sppkg"
   }
 }

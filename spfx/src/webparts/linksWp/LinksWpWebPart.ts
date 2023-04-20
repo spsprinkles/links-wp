@@ -6,7 +6,10 @@ export interface ILinksWpWebPartProps { }
 
 // Import the solution
 import "../../../../dist/links-wp.js";
-declare const LinksWP: { render: (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode) => void; };
+declare const LinksWP: {
+  render: (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode) => void;
+  updateTheme: () => void;
+};
 
 export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPartProps> {
 
@@ -20,18 +23,8 @@ export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPar
       return;
     }
 
-    /*
-    this._isDarkTheme = !!currentTheme.isInverted;
-    const {
-      semanticColors
-    } = currentTheme;
-
-    if (semanticColors) {
-      this.domElement.style.setProperty('--bodyText', semanticColors.bodyText || null);
-      this.domElement.style.setProperty('--link', semanticColors.link || null);
-      this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
-    }
-    */
+    // Update the theme
+    LinksWP.updateTheme();
   }
 
   protected get dataVersion(): Version {

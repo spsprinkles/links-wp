@@ -9,8 +9,9 @@ import "./styles.scss";
 
 // Create the global variable for this solution
 const GlobalVariable = {
+    App: null,
     Configuration,
-    render: (el: HTMLElement, context?, displayMode?:number, sourceUrl?: string) => {
+    render: (el: HTMLElement, context?, displayMode?: number, sourceUrl?: string) => {
         // See if the page context exists
         if (context) {
             // Set the context
@@ -25,7 +26,7 @@ const GlobalVariable = {
             // Success
             () => {
                 // Create the application
-                new App(el, displayMode);
+                GlobalVariable.App = new App(el, displayMode);
             },
 
             // Error
@@ -57,6 +58,9 @@ const GlobalVariable = {
                 });
             }
         );
+    },
+    updateTheme: () => {
+        GlobalVariable.App ? GlobalVariable.App.updateTheme() : null;
     }
 };
 

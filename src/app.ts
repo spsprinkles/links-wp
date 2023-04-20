@@ -1,4 +1,4 @@
-import { Helper, SPTypes } from "gd-sprest";
+import { ContextInfo, Helper, SPTypes } from "gd-sprest";
 import { DataSource } from "./ds";
 import { Link } from "./link";
 import Strings from "./strings";
@@ -7,12 +7,17 @@ import Strings from "./strings";
  * Main Application
  */
 export class App {
+    private _el: HTMLElement = null;
+
     // Constructor
     constructor(el: HTMLElement, displayMode: number) {
+        // Save the element
+        this._el = el;
+
         // See if we are editing the page
         if (this.isInEditMode(displayMode)) {
             // Render the dashboard
-            this.renderEdit(el);
+            this.renderEdit();
         }
 
         // Ensure links exist
@@ -21,10 +26,13 @@ export class App {
             let elWP = document.createElement("div");
             elWP.classList.add("links-wp");
             elWP.classList.add("row");
-            el.appendChild(elWP);
+            this._el.appendChild(elWP);
 
             // Render the dashboard
             this.render(elWP);
+
+            // Update the theme
+            this.updateTheme();
         }
     }
 
@@ -50,10 +58,10 @@ export class App {
     }
 
     // Render the edit information
-    private renderEdit(el: HTMLElement) {
+    private renderEdit() {
         // Render a link to the list
         let btn = document.createElement("button");
-        el.appendChild(btn);
+        this._el.appendChild(btn);
         btn.textContent = "Link to List";
         btn.addEventListener("click", () => {
             // Open the link in a new window
@@ -61,4 +69,27 @@ export class App {
         });
     }
 
+    // Updates the styling, based on the theme
+    updateTheme() {
+        // Ensure the theme is defined
+        if (ContextInfo.theme.accent == undefined) { return; }
+
+        // Get the column elements
+        let columns = this._el.querySelectorAll(".col");
+        for (let i = 0; i < columns.length; i++) {
+            let column = columns[i];
+
+            // Set the icon background color
+            let elIcon = column.querySelector(".link-icon") as HTMLElement;
+            elIcon.style.backgroundColor = ContextInfo.theme.primaryButtonBackground;
+
+            // Set the icon color
+            let elIconSvg = column.querySelector("svg path") as HTMLElement;
+            elIconSvg.style.fill = ContextInfo.theme.primaryButtonText;
+
+            // Set the text color
+            let elText = column.querySelector(".link-text") as HTMLElement;
+            elText.style.color = ContextInfo.theme.primaryButtonText;
+        }
+    }
 }

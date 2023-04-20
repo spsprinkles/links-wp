@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "links-web-part-client-side-solution",
+    "id": "2c1b46b1-7933-4a0f-a246-423c8f623a8c",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Links WebPart description"
+      },
+      "longDescription": {
+        "default": "Links WebPart description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "links-web-part Feature",
+        "description": "The feature that activates elements of the links-web-part solution.",
+        "id": "39f0bc57-ca86-460e-95ad-1fba2f4695e1",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/links-web-part.sppkg"
+  }
+}

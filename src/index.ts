@@ -10,7 +10,7 @@ import "./styles.scss";
 // Create the global variable for this solution
 const GlobalVariable = {
     Configuration,
-    render: (el: HTMLElement, context?, sourceUrl?: string) => {
+    render: (el: HTMLElement, context?, displayMode?:number, sourceUrl?: string) => {
         // See if the page context exists
         if (context) {
             // Set the context
@@ -25,7 +25,7 @@ const GlobalVariable = {
             // Success
             () => {
                 // Create the application
-                new App(el);
+                new App(el, displayMode);
             },
 
             // Error

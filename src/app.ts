@@ -1,5 +1,6 @@
 import { Helper, SPTypes } from "gd-sprest";
-import { DataSource, ILinkItem } from "./ds";
+import { DataSource } from "./ds";
+import { Link } from "./link";
 import Strings from "./strings";
 
 /**
@@ -19,6 +20,7 @@ export class App {
             // Create the main element
             let elWP = document.createElement("div");
             elWP.classList.add("links-wp");
+            elWP.classList.add("row");
             el.appendChild(elWP);
 
             // Render the dashboard
@@ -43,7 +45,7 @@ export class App {
         // Parse the links
         for (let i = 0; i < DataSource.Links.length; i++) {
             // Render the link
-            this.renderLink(el, DataSource.Links[i]);
+            new Link(el, DataSource.Links[i]);
         }
     }
 
@@ -59,40 +61,4 @@ export class App {
         });
     }
 
-    // Renders the link
-    private renderLink(el: HTMLElement, link: ILinkItem) {
-        // Read the icon
-        let elIcon = document.createElement("div");
-        elIcon.innerHTML = link.LinkIcon;
-
-        // Ensure a svg icon exists
-        let svgIcon = elIcon.querySelector("svg");
-        if (svgIcon) {
-            // Render the icon
-            let elLink = document.createElement("a");
-            el.appendChild(elLink);
-            elLink.classList.add("link-icon");
-            elLink.href = "#";
-            elLink.addEventListener("click", () => {
-                // Display the link in a new window
-                window.open(link.LinkUrl, "_blank");
-            });
-
-            // Add the icon
-            elLink.appendChild(svgIcon);
-
-            // Get the path element
-            let elSvgPath = svgIcon.querySelector("path");
-            if (elSvgPath) {
-                // Clear the color
-                elSvgPath.removeAttribute("fill");
-            }
-
-            // Add the text
-            let elText = document.createElement("div");
-            elLink.appendChild(elText);
-            elText.classList.add("link-text");
-            elText.innerHTML = link.Title;
-        }
-    }
 }

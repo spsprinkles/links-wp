@@ -71,8 +71,10 @@ export class App {
 
     // Updates the styling, based on the theme
     updateTheme() {
-        // Ensure the theme is defined
-        if (ContextInfo.theme.accent == undefined) { return; }
+        // Get the theme colors
+        let backgroundColor = ContextInfo.theme.primaryButtonBackground || DataSource.getThemeColor("ButtonBackground");
+        let iconColor = ContextInfo.theme.primaryButtonText || DataSource.getThemeColor("ButtonText");
+        let textColor = ContextInfo.theme.primaryButtonText || DataSource.getThemeColor("ButtonText");
 
         // Get the column elements
         let columns = this._el.querySelectorAll(".col");
@@ -81,15 +83,15 @@ export class App {
 
             // Set the icon background color
             let elIcon = column.querySelector(".link-icon") as HTMLElement;
-            elIcon.style.backgroundColor = ContextInfo.theme.primaryButtonBackground;
+            elIcon.style.backgroundColor = backgroundColor;
 
             // Set the icon color
             let elIconSvg = column.querySelector("svg path") as HTMLElement;
-            elIconSvg.style.fill = ContextInfo.theme.primaryButtonText;
+            elIconSvg.style.fill = iconColor;
 
             // Set the text color
             let elText = column.querySelector(".link-text") as HTMLElement;
-            elText.style.color = ContextInfo.theme.primaryButtonText;
+            elText.style.color = textColor;
         }
     }
 }

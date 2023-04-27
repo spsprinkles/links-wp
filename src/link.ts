@@ -1,3 +1,4 @@
+import { Components } from "gd-sprest-bs";
 import { ILinkItem } from "./ds";
 
 /**
@@ -48,12 +49,17 @@ export class Link {
             });
 
             // See if a tooltip exists
-            if(link.LinkTooltip) {
-                
+            let elCol = el.querySelector(".col");
+            if (link.LinkTooltip) {
+                // Render the tooltip
+                Components.Tooltip({
+                    content: link.LinkTooltip,
+                    target: elCol
+                })
             }
 
             // Return the element
-            return el.querySelector(".col");
+            return elCol;
         }
     }
 

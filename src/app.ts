@@ -1,4 +1,4 @@
-import { ContextInfo, Helper, SPTypes } from "gd-sprest-bs";
+import { Components, ContextInfo, Helper, SPTypes } from "gd-sprest-bs";
 import { DataSource } from "./ds";
 import { Link } from "./link";
 import Strings from "./strings";
@@ -60,13 +60,15 @@ export class App {
     // Render the edit information
     private renderEdit() {
         // Render a link to the list
-        let btn = document.createElement("button");
-        this._el.appendChild(btn);
-        btn.textContent = "Link to List";
-        btn.addEventListener("click", () => {
-            // Open the link in a new window
-            window.open(Strings.SourceUrl + "/lists/" + Strings.Lists.Links, "_blank");
-        });
+        Components.Button({
+            el: this._el,
+            text: "Link to List",
+            type: Components.ButtonTypes.OutlinePrimary,
+            onClick: () => {
+                // Open the link in a new window
+                window.open(Strings.SourceUrl + "/lists/" + Strings.Lists.Links, "_blank");
+            }
+        })
     }
 
     // Updates the styling, based on the theme

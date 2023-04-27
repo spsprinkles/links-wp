@@ -62,13 +62,14 @@ export class App {
         // Render a link to the list
         Components.Button({
             el: this._el,
+            className: "link-to-list",
             text: "Link to List",
             type: Components.ButtonTypes.OutlinePrimary,
             onClick: () => {
                 // Open the link in a new window
                 window.open(Strings.SourceUrl + "/lists/" + Strings.Lists.Links, "_blank");
             }
-        })
+        });
     }
 
     // Updates the styling, based on the theme
@@ -77,6 +78,14 @@ export class App {
         let backgroundColor = ContextInfo.theme.primaryButtonBackground || DataSource.getThemeColor("ButtonBackground");
         let iconColor = ContextInfo.theme.primaryButtonText || DataSource.getThemeColor("ButtonText");
         let textColor = ContextInfo.theme.primaryButtonText || DataSource.getThemeColor("ButtonText");
+
+        // Set the link button
+        let elButton: HTMLElement = this._el.querySelector(".link-to-list");
+        if (elButton) {
+            elButton.style.backgroundColor = backgroundColor;
+            elButton.style.borderColor = textColor;
+            elButton.style.color = textColor;
+        }
 
         // Get the column elements
         let columns = this._el.querySelectorAll(".col");

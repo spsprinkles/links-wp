@@ -1,6 +1,6 @@
 import { DisplayMode, Version } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
-import { IReadonlyTheme } from '@microsoft/sp-component-base';
+import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
 
 export interface ILinksWpWebPartProps { }
 
@@ -8,7 +8,7 @@ export interface ILinksWpWebPartProps { }
 import "../../../../dist/links-wp.js";
 declare const LinksWP: {
   render: (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode) => void;
-  updateTheme: () => void;
+  updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
 };
 
 export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPartProps> {
@@ -31,7 +31,7 @@ export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPar
     }
 
     // Update the theme
-    LinksWP.updateTheme();
+    LinksWP.updateTheme(currentTheme.semanticColors);
   }
 
   protected get dataVersion(): Version {

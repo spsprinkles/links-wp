@@ -13,9 +13,16 @@ declare const LinksWP: {
 
 export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPartProps> {
 
+  private _hasRendered: boolean = false;
   public render(): void {
+    // See if have rendered the solution
+    if(this._hasRendered) { return; }
+
     // Render the solution
     LinksWP.render(this.domElement, this.context, this.displayMode);
+
+    // Set the flag
+    this._hasRendered = true;
   }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {

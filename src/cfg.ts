@@ -1,4 +1,4 @@
-import { Helper, SPTypes } from "gd-sprest";
+import { Helper, SPTypes } from "gd-sprest-bs";
 import Strings from "./strings";
 
 /**
@@ -33,13 +33,19 @@ export const Configuration = Helper.SPConfig({
                     description: "The svg html markup of the icon. Reference https://www.flicon.io/ for examples.",
                     type: Helper.SPCfgFieldType.Note,
                     noteType: SPTypes.FieldNoteType.TextOnly
-                } as Helper.IFieldInfoNote
+                } as Helper.IFieldInfoNote,
+                {
+                    name: "LinkTooltip",
+                    title: "Tooltip",
+                    description: "Text to be displayed when hovering over the icon.",
+                    type: Helper.SPCfgFieldType.Text
+                },
             ],
             ViewInformation: [
                 {
                     ViewName: "All Items",
                     ViewFields: [
-                        "LinkTitle", "LinkUrl", "LinkIcon"
+                        "LinkTitle", "LinkUrl", "LinkIcon", "LinkTooltip"
                     ]
                 }
             ]

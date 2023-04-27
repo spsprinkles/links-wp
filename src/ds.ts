@@ -1,4 +1,4 @@
-import { ContextInfo, Helper, Site, Types, Web } from "gd-sprest";
+import { ContextInfo, Helper, Types, Web } from "gd-sprest-bs";
 import Strings from "./strings";
 
 /**
@@ -8,6 +8,7 @@ import Strings from "./strings";
 export interface ILinkItem extends Types.SP.ListItem {
     LinkIcon: string;
     LinkOrder: number;
+    LinkTooltip?: string;
     LinkUrl: string;
 }
 

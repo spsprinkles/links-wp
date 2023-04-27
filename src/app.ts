@@ -1,4 +1,4 @@
-import { ContextInfo, Helper, SPTypes } from "gd-sprest";
+import { ContextInfo, Helper, SPTypes } from "gd-sprest-bs";
 import { DataSource } from "./ds";
 import { Link } from "./link";
 import Strings from "./strings";

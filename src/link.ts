@@ -47,6 +47,11 @@ export class Link {
                 window.open(link.LinkUrl, "_blank");
             });
 
+            // See if a tooltip exists
+            if(link.LinkTooltip) {
+                
+            }
+
             // Return the element
             return el.querySelector(".col");
         }

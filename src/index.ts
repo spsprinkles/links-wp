@@ -59,8 +59,8 @@ const GlobalVariable = {
             }
         );
     },
-    updateTheme: () => {
-        GlobalVariable.App ? GlobalVariable.App.updateTheme() : null;
+    updateTheme: (themeInfo) => {
+        GlobalVariable.App ? GlobalVariable.App.updateTheme(themeInfo) : null;
     }
 };
 

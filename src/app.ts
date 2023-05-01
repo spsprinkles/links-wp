@@ -70,11 +70,11 @@ export class App {
     }
 
     // Updates the styling, based on the theme
-    updateTheme() {
+    updateTheme(themeInfo?:any) {
         // Get the theme colors
-        let backgroundColor = ContextInfo.theme.primaryButtonBackground || DataSource.getThemeColor("ButtonBackground");
-        let iconColor = ContextInfo.theme.primaryButtonText || DataSource.getThemeColor("ButtonText");
-        let textColor = ContextInfo.theme.primaryButtonText || DataSource.getThemeColor("ButtonText");
+        let backgroundColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || DataSource.getThemeColor("ButtonBackground");
+        let iconColor = (themeInfo || ContextInfo.theme).primaryButtonText || DataSource.getThemeColor("ButtonText");
+        let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || DataSource.getThemeColor("ButtonText");
 
         // Get the column elements
         let columns = this._el.querySelectorAll(".col");

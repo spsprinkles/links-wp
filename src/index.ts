@@ -1,4 +1,4 @@
-import { ContextInfo } from "gd-sprest";
+import { Components, ContextInfo } from "gd-sprest-bs";
 import { App } from "./app";
 import { Configuration } from "./cfg";
 import { DataSource } from "./ds";
@@ -34,27 +34,31 @@ const GlobalVariable = {
                 let installFl = false;
 
                 // Render a button to install the solution
-                let btn = document.createElement("button");
-                el.appendChild(btn);
-                btn.textContent = "Install App";
-                btn.addEventListener("click", () => {
-                    if (installFl) {
-                        // Refresh the page
-                        window.location.reload();
+                let btn = Components.Button({
+                    el,
+                    text: "Install App",
+                    type: Components.ButtonTypes.OutlinePrimary,
+                    onClick: () => {
+                        if (installFl) {
+                            // Refresh the page
+                            window.location.reload();
+                        }
+
+                        // Disable the button
+                        btn.disable();
+
+                        // Install the solution
+                        Configuration.install().then(() => {
+                            // Set the flag
+                            installFl = true;
+
+                            // Update the button
+                            btn.setText("Refresh");
+
+                            // Enable the button
+                            btn.enable();
+                        });
                     }
-
-                    // Disable the button
-                    btn.disabled = true;
-
-                    // Install the solution
-                    Configuration.install().then(() => {
-                        // Set the flag
-                        installFl = true;
-
-                        // Update the button
-                        btn.textContent = "Refresh";
-                        btn.disabled = false;
-                    });
                 });
             }
         );

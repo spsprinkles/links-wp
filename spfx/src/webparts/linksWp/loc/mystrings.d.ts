@@ -1,7 +1,9 @@
 declare interface ILinksWpWebPartStrings {
-  PropertyPaneDescription: string;
   BasicGroupName: string;
-  DescriptionFieldLabel: string;
+  ViewNameFieldDescription: string;
+  ViewNameFieldLabel: string;
+  WebUrlFieldDescription: string;
+  WebUrlFieldLabel: string;
   AppLocalEnvironmentSharePoint: string;
   AppLocalEnvironmentTeams: string;
   AppLocalEnvironmentOffice: string;

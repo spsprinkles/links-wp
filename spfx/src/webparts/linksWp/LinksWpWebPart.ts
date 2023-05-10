@@ -1,13 +1,18 @@
 import { DisplayMode, Version } from '@microsoft/sp-core-library';
+import { IPropertyPaneConfiguration, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
+import * as strings from 'LinksWpWebPartStrings';
 
-export interface ILinksWpWebPartProps { }
+export interface ILinksWpWebPartProps {
+  viewName: string;
+  webUrl: string;
+}
 
 // Import the solution
 import "../../../../dist/links-wp.js";
 declare const LinksWP: {
-  render: (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode) => void;
+  render: (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode, viewName: string, sourceUrl: string) => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
 };
 
@@ -16,10 +21,10 @@ export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPar
   private _hasRendered: boolean = false;
   public render(): void {
     // See if have rendered the solution
-    if(this._hasRendered) { return; }
+    if (this._hasRendered) { return; }
 
     // Render the solution
-    LinksWP.render(this.domElement, this.context, this.displayMode);
+    LinksWP.render(this.domElement, this.context, this.displayMode, this.properties.viewName, this.properties.webUrl);
 
     // Set the flag
     this._hasRendered = true;
@@ -32,6 +37,29 @@ export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPar
 
     // Update the theme
     LinksWP.updateTheme(currentTheme.semanticColors);
+  }
+
+  protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+    return {
+      pages: [
+        {
+          groups: [
+            {
+              groupFields: [
+                PropertyPaneTextField('webUrl', {
+                  label: strings.WebUrlFieldLabel,
+                  description: strings.WebUrlFieldDescription
+                }),
+                PropertyPaneTextField('viewName', {
+                  label: strings.ViewNameFieldLabel,
+                  description: strings.ViewNameFieldDescription
+                })
+              ]
+            }
+          ]
+        }
+      ]
+    };
   }
 
   protected get dataVersion(): Version {

@@ -1,8 +1,10 @@
-define([], function() {
+define([], function () {
   return {
-    "PropertyPaneDescription": "Description",
     "BasicGroupName": "Group Name",
-    "DescriptionFieldLabel": "Description Field",
+    "ViewNameFieldDescription": "The view name to load the links from. If blank, it will default to the 'All Items' view.",
+    "ViewNameFieldLabel": "View Name",
+    "WebUrlFieldDescription": "The web containing the links list. If blank, it will default to the current web.",
+    "WebUrlFieldLabel": "Web Url",
     "AppLocalEnvironmentSharePoint": "The app is running on your local environment as SharePoint web part",
     "AppLocalEnvironmentTeams": "The app is running on your local environment as Microsoft Teams app",
     "AppLocalEnvironmentOffice": "The app is running on your local environment in office.com",

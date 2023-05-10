@@ -39,7 +39,7 @@ export class DataSource {
         return new Promise((resolve, reject) => {
             // Create the list instance
             this._linksList = new List({
-                listName: Strings.Lists.Links,
+                listName: Strings.Lists.IconLinks,
                 viewName: viewName || "All Items",
                 webUrl: Strings.SourceUrl,
                 onInitError: reject,

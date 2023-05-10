@@ -1,7 +1,6 @@
 import { Components, ContextInfo, Helper, SPTypes } from "gd-sprest-bs";
 import { DataSource } from "./ds";
 import { Link } from "./link";
-import Strings from "./strings";
 
 /**
  * Main Application
@@ -67,7 +66,7 @@ export class App {
             type: Components.ButtonTypes.OutlinePrimary,
             onClick: () => {
                 // Open the link in a new window
-                window.open(Strings.SourceUrl + "/lists/" + Strings.Lists.Links, "_blank");
+                window.open(DataSource.LinksList.ListUrl, "_blank");
             }
         });
     }

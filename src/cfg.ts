@@ -8,7 +8,7 @@ export const Configuration = Helper.SPConfig({
     ListCfg: [
         {
             ListInformation: {
-                Title: Strings.Lists.Links,
+                Title: Strings.Lists.IconLinks,
                 BaseTemplate: SPTypes.ListTemplateType.GenericList
             },
             CustomFields: [

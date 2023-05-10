@@ -21,7 +21,7 @@ export class App {
         }
 
         // Ensure links exist
-        if (DataSource.Links && DataSource.Links.length > 0) {
+        if (DataSource.LinksList.Items.length > 0) {
             // Create the main element
             let elWP = document.createElement("div");
             elWP.classList.add("links-wp");
@@ -51,9 +51,9 @@ export class App {
     // Renders the dashboard
     private render(el: HTMLElement) {
         // Parse the links
-        for (let i = 0; i < DataSource.Links.length; i++) {
+        for (let i = 0; i < DataSource.LinksList.Items.length; i++) {
             // Render the link
-            new Link(el, DataSource.Links[i]);
+            new Link(el, DataSource.LinksList.Items[i]);
         }
     }
 

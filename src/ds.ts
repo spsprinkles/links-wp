@@ -10,6 +10,7 @@ export interface ILinkItem extends Types.SP.ListItem {
     LinkOrder: number;
     LinkTooltip?: string;
     LinkUrl: string;
+    OpenInNewTab?: boolean;
 }
 
 /**

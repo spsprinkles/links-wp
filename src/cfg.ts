@@ -40,12 +40,19 @@ export const Configuration = Helper.SPConfig({
                     description: "Text to be displayed when hovering over the icon.",
                     type: Helper.SPCfgFieldType.Text
                 },
+                {
+                    name: "OpenInNewTab",
+                    title: "Open In New Tab",
+                    description: "Opens the link in a new tab/window.",
+                    type: Helper.SPCfgFieldType.Boolean,
+                    defaultValue: "0"
+                },
             ],
             ViewInformation: [
                 {
                     ViewName: "All Items",
                     ViewFields: [
-                        "LinkTitle", "LinkUrl", "LinkIcon", "LinkTooltip"
+                        "LinkTitle", "LinkUrl", "LinkIcon", "LinkTooltip", "OpenInNewTab"
                     ]
                 }
             ]

@@ -11,7 +11,7 @@ import "./styles.scss";
 const GlobalVariable = {
     App: null,
     Configuration,
-    render: (el: HTMLElement, context?, displayMode?: number, sourceUrl?: string) => {
+    render: (el: HTMLElement, context?, displayMode?: number, viewName?:string, sourceUrl?: string) => {
         // See if the page context exists
         if (context) {
             // Set the context
@@ -22,7 +22,7 @@ const GlobalVariable = {
         }
 
         // Initialize the application
-        DataSource.init().then(
+        DataSource.init(viewName).then(
             // Success
             () => {
                 // Create the application

@@ -20,7 +20,12 @@
   },
   "homepage": "https://github.com/spsprinkles/links-wp#readme",
   "dependencies": {
-    "gd-sprest-bs": "^10.10.16"
+    "datatables.net": "^1.13.4",
+    "datatables.net-bs5": "^1.13.4",
+    "dattatable": "^2.7.3",
+    "gd-sprest-bs": "^10.10.17",
+    "jquery": "^3.6.4",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

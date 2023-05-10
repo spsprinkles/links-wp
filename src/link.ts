@@ -31,7 +31,7 @@ export class Link {
 
             // Generate the html
             let html = `<div class="col">
-                <a class="link-icon" href="#">
+                <a class="link-icon" href="${link.LinkUrl || "#"}" target="${link.OpenInNewTab ? "_blank" : "_self"}">
                     ${svgIcon.outerHTML}
                     <div class="link-text">${link.Title}</div>
                 </a>
@@ -40,13 +40,6 @@ export class Link {
             // Create the element
             el = document.createElement("div");
             el.innerHTML = html;
-
-            // Set the link click event
-            let elLink = el.querySelector("a");
-            elLink.addEventListener("click", () => {
-                // Display the link in a new window
-                window.open(link.LinkUrl, "_blank");
-            });
 
             // See if a tooltip exists
             let elCol = el.querySelector(".col");

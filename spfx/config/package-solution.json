@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "links-web-part-client-side-solution",
+    "name": "Icon Links",
     "id": "2c1b46b1-7933-4a0f-a246-423c8f623a8c",
     "version": "0.0.0.1",
     "includeClientSideAssets": true,
@@ -16,10 +16,10 @@
     },
     "metadata": {
       "shortDescription": {
-        "default": "Links WebPart description"
+        "default": "Displays icon links from a list."
       },
       "longDescription": {
-        "default": "Links WebPart description"
+        "default": "Displays icon links from a list."
       },
       "screenshotPaths": [],
       "videoUrl": "",

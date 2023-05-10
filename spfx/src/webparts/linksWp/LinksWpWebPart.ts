@@ -21,7 +21,10 @@ export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPar
   private _hasRendered: boolean = false;
   public render(): void {
     // See if have rendered the solution
-    if (this._hasRendered) { return; }
+    if (this._hasRendered) {
+      // Clear the element
+      while (this.domElement.firstChild) { this.domElement.removeChild(this.domElement.firstChild); }
+    }
 
     // Render the solution
     LinksWP.render(this.domElement, this.context, this.displayMode, this.properties.viewName, this.properties.webUrl);
@@ -38,6 +41,8 @@ export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPar
     // Update the theme
     LinksWP.updateTheme(currentTheme.semanticColors);
   }
+
+  protected get disableReactivePropertyChanges(): boolean { return true; }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {

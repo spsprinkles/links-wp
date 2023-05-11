@@ -1,3 +1,11 @@
+/** Root Styles */
+:root {
+    --sp-btn-bg: #0078d4;
+    --sp-btn-bg-hover: #106ebe;
+    --sp-btn-bg-active: #005a9e;
+    --sp-btn-text: #fff;
+}
+
 /** Links Webpart */
 .links-wp {
     display: flex;
@@ -5,24 +13,72 @@
 
 /** Link Icon */
 .link-icon {
-    background-color: blue;
-    color: white;
+    background-color: var(--sp-btn-bg);
+    border-radius: 4px;
+    color: var(--sp-btn-text);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 120px;
-    margin: 5px;
+    height: 100px;
+    margin: 2.5px 5px;
     width: 100px;
 
     svg {
-        margin: 5px 10px;
+        height: 36px;
+        margin: auto;
+        padding-top: 0.5rem;
+        width: 36px;
         path {
-            fill: white;
+            fill: var(--sp-btn-text);
         }
     }
+}
+
+/** Link Icon Hover & Active */
+.link-icon:hover, .link-icon:active {
+    color: var(--sp-btn-text);
+    text-decoration: none;
+}
+
+/** Link Icon Hover */
+.link-icon:hover {
+    background-color: var(--sp-btn-bg-hover);
+}
+
+/** Link Icon Active */
+.link-icon:active {
+    background-color: var(--sp-btn-bg-active);
+}
+
+/** Link Icon Visited */
+.link-icon:visited {
+    color: var(--sp-btn-text);
 }
 
 /** Link Text */
 .link-text {
     margin: auto;
+    padding-bottom: 0.5rem;
+}
+
+/* Tippy Tooltip text color */
+.tippy-box {
+    color: var(--sp-btn-text);
+}
+
+/* Tippy Tooltip secondary theme color */
+.tippy-box[data-theme~='secondary'] {
+    background-color: var(--sp-btn-bg);
+}
+.tippy-box[data-theme~='secondary'][data-placement^='top']>.tippy-arrow::before {
+    border-top-color: var(--sp-btn-bg);
+}
+.tippy-box[data-theme~='secondary'][data-placement^='bottom']>.tippy-arrow::before {
+    border-bottom-color: var(--sp-btn-bg);
+}
+.tippy-box[data-theme~='secondary'][data-placement^='left']>.tippy-arrow::before {
+    border-left-color: var(--sp-btn-bg);
+}
+.tippy-box[data-theme~='secondary'][data-placement^='right']>.tippy-arrow::before {
+    border-right-color: var(--sp-btn-bg);
 }

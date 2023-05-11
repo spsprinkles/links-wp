@@ -72,37 +72,27 @@ export class App {
         });
     }
 
+    // Convert hex values from aRGB to RGBa
+    private aRGB2RGBa(hex:string): string {
+        if (hex.length > 7) {
+            return "#"+hex.slice(3,9)+hex[1]+hex[2];
+        }
+        else return hex;
+    }
+
     // Updates the styling, based on the theme
     updateTheme(themeInfo?:any) {
         // Get the theme colors
-        let backgroundColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || DataSource.getThemeColor("ButtonBackground");
-        let iconColor = (themeInfo || ContextInfo.theme).primaryButtonText || DataSource.getThemeColor("ButtonText");
-        let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || DataSource.getThemeColor("ButtonText");
+        let bgColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || this.aRGB2RGBa(DataSource.getThemeColor("NavigationSelectedBackground"));
+        let bgHover = (themeInfo || ContextInfo.theme).primaryButtonBackgroundHovered || this.aRGB2RGBa(DataSource.getThemeColor("NavigationHoverBackground"));
+        let bgActive = (themeInfo || ContextInfo.theme).primaryButtonBackgroundPressed || this.aRGB2RGBa(DataSource.getThemeColor("NavigationAccent"));
+        let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || this.aRGB2RGBa(DataSource.getThemeColor("Navigation"));
 
-        // Set the link button
-        let elButton: HTMLElement = this._el.querySelector(".link-to-list");
-        if (elButton) {
-            elButton.style.backgroundColor = backgroundColor;
-            elButton.style.borderColor = textColor;
-            elButton.style.color = textColor;
-        }
-
-        // Get the column elements
-        let columns = this._el.querySelectorAll(".col");
-        for (let i = 0; i < columns.length; i++) {
-            let column = columns[i];
-
-            // Set the icon background color
-            let elIcon = column.querySelector(".link-icon") as HTMLElement;
-            elIcon.style.backgroundColor = backgroundColor;
-
-            // Set the icon color
-            let elIconSvg = column.querySelector("svg path") as HTMLElement;
-            elIconSvg.style.fill = iconColor;
-
-            // Set the text color
-            let elText = column.querySelector(".link-text") as HTMLElement;
-            elText.style.color = textColor;
-        }
+        // Set the CSS properties to the theme colors
+        let root = document.querySelector(':root') as HTMLElement;
+        root.style.setProperty('--sp-btn-bg', bgColor);
+        root.style.setProperty('--sp-btn-bg-hover', bgHover);
+        root.style.setProperty('--sp-btn-bg-active', bgActive);
+        root.style.setProperty('--sp-btn-text', textColor);
     }
 }

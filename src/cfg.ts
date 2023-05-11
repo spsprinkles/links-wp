@@ -8,7 +8,7 @@ export const Configuration = Helper.SPConfig({
     ListCfg: [
         {
             ListInformation: {
-                Title: Strings.Lists.Links,
+                Title: Strings.Lists.IconLinks,
                 BaseTemplate: SPTypes.ListTemplateType.GenericList
             },
             CustomFields: [
@@ -51,6 +51,7 @@ export const Configuration = Helper.SPConfig({
             ViewInformation: [
                 {
                     ViewName: "All Items",
+                    ViewQuery: "<OrderBy><FieldRef Name='LinkOrder' /></OrderBy>",
                     ViewFields: [
                         "LinkTitle", "LinkUrl", "LinkIcon", "LinkTooltip", "OpenInNewTab"
                     ]

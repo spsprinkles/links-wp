@@ -17,7 +17,7 @@ const Strings = {
     AppElementId: "links-wp",
     GlobalVariable: "LinksWP",
     Lists: {
-        Links: "Icon Links"
+        IconLinks: "Icon Links"
     },
     ProjectName: "Links WebPart",
     ProjectDescription: "An SPSprinkles solution.",

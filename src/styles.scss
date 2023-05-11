@@ -57,8 +57,12 @@
 
 /** Link Text */
 .link-text {
+    display: -webkit-box;
     margin: auto;
-    padding-bottom: 0.5rem;
+    overflow: hidden;
+    text-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 /* Tippy Tooltip text color */

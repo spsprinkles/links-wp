@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/spsprinkles/links-wp#readme",
   "dependencies": {
-    "gd-sprest-bs": "^10.10.16"
+    "gd-sprest-bs": "^10.10.18"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

@@ -72,21 +72,13 @@ export class App {
         });
     }
 
-    // Convert hex values from aRGB to RGBa
-    private aRGB2RGBa(hex:string): string {
-        if (hex.length > 7) {
-            return "#"+hex.slice(3,9)+hex[1]+hex[2];
-        }
-        else return hex;
-    }
-
     // Updates the styling, based on the theme
     updateTheme(themeInfo?:any) {
         // Get the theme colors
-        let bgColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || this.aRGB2RGBa(DataSource.getThemeColor("NavigationSelectedBackground"));
-        let bgHover = (themeInfo || ContextInfo.theme).primaryButtonBackgroundHovered || this.aRGB2RGBa(DataSource.getThemeColor("NavigationHoverBackground"));
-        let bgActive = (themeInfo || ContextInfo.theme).primaryButtonBackgroundPressed || this.aRGB2RGBa(DataSource.getThemeColor("NavigationPressed"));
-        let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || this.aRGB2RGBa(DataSource.getThemeColor("Navigation"));
+        let bgColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || DataSource.getThemeColor("NavigationSelectedBackground");
+        let bgHover = (themeInfo || ContextInfo.theme).primaryButtonBackgroundHovered || DataSource.getThemeColor("NavigationHoverBackground");
+        let bgActive = (themeInfo || ContextInfo.theme).primaryButtonBackgroundPressed || DataSource.getThemeColor("NavigationPressed");
+        let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || DataSource.getThemeColor("Navigation");
 
         // Set the CSS properties to the theme colors
         let root = document.querySelector(':root') as HTMLElement;

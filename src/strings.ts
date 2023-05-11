@@ -20,8 +20,8 @@ const Strings = {
         IconLinks: "Icon Links"
     },
     ProjectName: "Links WebPart",
-    ProjectDescription: "An SPSprinkles solution.",
+    ProjectDescription: "Displays icon links from a list.",
     SourceUrl: ContextInfo.webServerRelativeUrl,
-    Version: "0.1"
+    Version: "0.0.1"
 };
 export default Strings;

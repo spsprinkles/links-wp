@@ -21,6 +21,7 @@
     justify-content: center;
     height: 100px;
     margin: 2.5px 5px;
+    text-decoration: none;
     width: 100px;
 
     svg {
@@ -34,8 +35,8 @@
     }
 }
 
-/** Link Icon Hover & Active */
-.link-icon:hover, .link-icon:active {
+/** Link Icon Hover, Active, Visited, & Tippy Tooltip text color*/
+.link-icon:hover, .link-icon:active, .link-icon:visited, .tippy-box {
     color: var(--sp-btn-text);
     text-decoration: none;
 }
@@ -50,11 +51,6 @@
     background-color: var(--sp-btn-bg-active);
 }
 
-/** Link Icon Visited */
-.link-icon:visited {
-    color: var(--sp-btn-text);
-}
-
 /** Link Text */
 .link-text {
     display: -webkit-box;
@@ -63,11 +59,6 @@
     text-align: center;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-}
-
-/* Tippy Tooltip text color */
-.tippy-box {
-    color: var(--sp-btn-text);
 }
 
 /* Tippy Tooltip secondary theme color */

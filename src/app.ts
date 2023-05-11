@@ -85,7 +85,7 @@ export class App {
         // Get the theme colors
         let bgColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || this.aRGB2RGBa(DataSource.getThemeColor("NavigationSelectedBackground"));
         let bgHover = (themeInfo || ContextInfo.theme).primaryButtonBackgroundHovered || this.aRGB2RGBa(DataSource.getThemeColor("NavigationHoverBackground"));
-        let bgActive = (themeInfo || ContextInfo.theme).primaryButtonBackgroundPressed || this.aRGB2RGBa(DataSource.getThemeColor("NavigationAccent"));
+        let bgActive = (themeInfo || ContextInfo.theme).primaryButtonBackgroundPressed || this.aRGB2RGBa(DataSource.getThemeColor("NavigationPressed"));
         let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || this.aRGB2RGBa(DataSource.getThemeColor("Navigation"));
 
         // Set the CSS properties to the theme colors

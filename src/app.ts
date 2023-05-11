@@ -1,4 +1,5 @@
 import { Components, ContextInfo, Helper, SPTypes } from "gd-sprest-bs";
+import { link45deg } from "gd-sprest-bs/build/icons/svgs/link45deg";
 import { DataSource } from "./ds";
 import { Link } from "./link";
 
@@ -59,16 +60,20 @@ export class App {
     // Render the edit information
     private renderEdit() {
         // Render a link to the list
-        Components.Button({
+        let btn = Components.Button({
             el: this._el,
-            className: "link-to-list",
-            text: "Link to List",
+            className: "links-list ms-1 my-1",
+            iconSize: 22,
+            iconType: link45deg,
+            isSmall: true,
+            text: "Links List",
             type: Components.ButtonTypes.OutlinePrimary,
             onClick: () => {
                 // Open the link in a new window
                 window.open(DataSource.LinksList.ListUrl, "_blank");
             }
         });
+        btn.el.classList.remove("btn-icon");
     }
 
     // Updates the styling, based on the theme

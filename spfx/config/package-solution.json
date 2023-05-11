@@ -7,9 +7,10 @@
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
+    "iconPath": "images/AppIcon.png",
     "developer": {
-      "name": "",
-      "websiteUrl": "",
+      "name": "Dade Register, Gunjan Datta",
+      "websiteUrl": "https://github.com/spsprinkles/links-wp/",
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": "Undefined-1.16.1"

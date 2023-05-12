@@ -22,6 +22,6 @@ const Strings = {
     ProjectName: "Links WebPart",
     ProjectDescription: "Displays icon links from a list.",
     SourceUrl: ContextInfo.webServerRelativeUrl,
-    Version: "0.0.1"
+    Version: "0.0.2"
 };
 export default Strings;

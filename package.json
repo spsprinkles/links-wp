@@ -1,6 +1,6 @@
 {
   "name": "links-wp",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "A links webpart.",
   "main": "src/index.ts",
   "scripts": {

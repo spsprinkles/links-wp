@@ -22,21 +22,22 @@
 /** Link Icon */
 .link-icon {
     background-color: var(--sp-btn-bg);
-    border-radius: 4px;
+    border-radius: .25rem;
     color: var(--sp-btn-text);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100px;
+    height: 90px;
     margin: 2.5px 5px;
+    padding: .25rem;
     text-decoration: none;
-    width: 100px;
+    width: 90px;
 
     svg {
-        height: 36px;
+        height: 32px;
         margin: auto;
         padding-top: 0.5rem;
-        width: 36px;
+        width: 32px;
         path {
             fill: var(--sp-btn-text);
         }

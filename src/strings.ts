@@ -20,7 +20,7 @@ const Strings = {
         IconLinks: "Icon Links"
     },
     ProjectName: "Links WebPart",
-    ProjectDescription: "Displays icon links from a list.",
+    ProjectDescription: "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites.",
     SourceUrl: ContextInfo.webServerRelativeUrl,
     Version: "0.0.2"
 };

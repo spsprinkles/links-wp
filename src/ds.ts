@@ -1,5 +1,5 @@
 import { List } from "dattatable";
-import { ContextInfo, Helper, Types, Web } from "gd-sprest-bs";
+import { ContextInfo, Helper, Types } from "gd-sprest-bs";
 import Strings from "./strings";
 
 /**
@@ -19,11 +19,11 @@ export interface ILinkItem extends Types.SP.ListItem {
  */
 export class DataSource {
     // Theme Information
-    private static _themeInfo: { [name: string]: string };
-    static getThemeColor(name: string) { return ContextInfo.theme.accent ? ContextInfo.theme[name] : this._themeInfo[name]; }
+    private _themeInfo: { [name: string]: string };
+    getThemeColor(name: string) { return ContextInfo.theme.accent ? ContextInfo.theme[name] : this._themeInfo[name]; }
 
     // Initializes the application
-    static init(viewName?: string) {
+    init(viewName?: string) {
         // Initialize the solution
         return Promise.all([
             this.initLinksList(viewName),
@@ -32,9 +32,9 @@ export class DataSource {
     }
 
     // Links list
-    private static _linksList: List<ILinkItem> = null;
-    static get LinksList(): List<ILinkItem> { return this._linksList; }
-    private static initLinksList(viewName?: string): PromiseLike<void> {
+    private _linksList: List<ILinkItem> = null;
+    get LinksList(): List<ILinkItem> { return this._linksList; }
+    private initLinksList(viewName?: string): PromiseLike<void> {
         // Return a promise
         return new Promise((resolve, reject) => {
             // Create the list instance
@@ -49,7 +49,7 @@ export class DataSource {
     }
 
     // Intializes the theme information
-    static initTheme(): PromiseLike<void> {
+    initTheme(): PromiseLike<void> {
         // Clear the theme
         this._themeInfo = {};
 

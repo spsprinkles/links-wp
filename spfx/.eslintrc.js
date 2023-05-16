@@ -234,7 +234,7 @@ module.exports = {
         //                    a variable.  Either it's part of an awkward expression like "(new Thing()).doSomething()",
         //                    or else implies that the constructor is doing nontrivial computations, which is often
         //                    a poor class design.
-        'no-new': 1,
+        'no-new': 0,
         // RATIONALE:         Obsolete language feature that is deprecated.
         'no-new-func': 2,
         // RATIONALE:         Obsolete language feature that is deprecated.

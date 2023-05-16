@@ -7,11 +7,13 @@ import { Link } from "./link";
  * Main Application
  */
 export class App {
+    private _ds: DataSource = null;
     private _el: HTMLElement = null;
 
     // Constructor
-    constructor(el: HTMLElement, displayMode: number) {
-        // Save the element
+    constructor(el: HTMLElement, ds: DataSource, displayMode: number) {
+        // Save the properties
+        this._ds = ds;
         this._el = el;
 
         // See if we are editing the page
@@ -21,7 +23,7 @@ export class App {
         }
 
         // Ensure links exist
-        if (DataSource.LinksList.Items.length > 0) {
+        if (this._ds.LinksList.Items.length > 0) {
             // Create the main element
             let elWP = document.createElement("div");
             elWP.classList.add("links-wp");
@@ -51,9 +53,9 @@ export class App {
     // Renders the dashboard
     private render(el: HTMLElement) {
         // Parse the links
-        for (let i = 0; i < DataSource.LinksList.Items.length; i++) {
+        for (let i = 0; i < this._ds.LinksList.Items.length; i++) {
             // Render the link
-            new Link(el, DataSource.LinksList.Items[i]);
+            new Link(el, this._ds.LinksList.Items[i]);
         }
     }
 
@@ -70,19 +72,19 @@ export class App {
             type: Components.ButtonTypes.OutlinePrimary,
             onClick: () => {
                 // Open the link in a new window
-                window.open(DataSource.LinksList.ListUrl, "_blank");
+                window.open(this._ds.LinksList.ListUrl, "_blank");
             }
         });
         btn.el.classList.remove("btn-icon");
     }
 
     // Updates the styling, based on the theme
-    updateTheme(themeInfo?:any) {
+    updateTheme(themeInfo?: any) {
         // Get the theme colors
-        let bgColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || DataSource.getThemeColor("NavigationSelectedBackground");
-        let bgHover = (themeInfo || ContextInfo.theme).primaryButtonBackgroundHovered || DataSource.getThemeColor("NavigationHoverBackground");
-        let bgActive = (themeInfo || ContextInfo.theme).primaryButtonBackgroundPressed || DataSource.getThemeColor("NavigationPressed");
-        let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || DataSource.getThemeColor("Navigation");
+        let bgColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || this._ds.getThemeColor("NavigationSelectedBackground");
+        let bgHover = (themeInfo || ContextInfo.theme).primaryButtonBackgroundHovered || this._ds.getThemeColor("NavigationHoverBackground");
+        let bgActive = (themeInfo || ContextInfo.theme).primaryButtonBackgroundPressed || this._ds.getThemeColor("NavigationPressed");
+        let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || this._ds.getThemeColor("Navigation");
 
         // Set the CSS properties to the theme colors
         let root = document.querySelector(':root') as HTMLElement;

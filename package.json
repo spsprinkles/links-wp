@@ -1,7 +1,7 @@
 {
   "name": "links-wp",
-  "version": "0.0.2",
-  "description": "A links webpart.",
+  "version": "0.0.4",
+  "description": "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites.",
   "main": "src/index.ts",
   "scripts": {
     "all": "npm run build && npm run prod && npm run spfx",

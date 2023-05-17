@@ -12,7 +12,7 @@ export interface ILinksWpWebPartProps {
 // Import the solution
 import "../../../../dist/links-wp.js";
 declare const LinksWP: {
-  render: (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode, viewName: string, sourceUrl: string) => void;
+  render: new(el: HTMLElement, context: WebPartContext, displayMode: DisplayMode, viewName: string, sourceUrl: string) => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
 };
 
@@ -27,7 +27,7 @@ export default class LinksWpWebPart extends BaseClientSideWebPart<ILinksWpWebPar
     }
 
     // Render the solution
-    LinksWP.render(this.domElement, this.context, this.displayMode, this.properties.viewName, this.properties.webUrl);
+    new LinksWP.render(this.domElement, this.context, this.displayMode, this.properties.viewName, this.properties.webUrl);
 
     // Set the flag
     this._hasRendered = true;

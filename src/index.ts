@@ -11,7 +11,7 @@ import "./styles.scss";
 const GlobalVariable = {
     App: null,
     Configuration,
-    render: (el: HTMLElement, context?, displayMode?: number, viewName?:string, sourceUrl?: string) => {
+    render: (el: HTMLElement, context?, displayMode?: number, viewName?: string, sourceUrl?: string) => {
         // See if the page context exists
         if (context) {
             // Set the context
@@ -21,12 +21,13 @@ const GlobalVariable = {
             Configuration.setWebUrl(sourceUrl || ContextInfo.webServerRelativeUrl);
         }
 
-        // Initialize the application
-        DataSource.init(viewName).then(
+        // Initialize the data source
+        let ds = new DataSource();
+        ds.init(viewName).then(
             // Success
             () => {
                 // Create the application
-                GlobalVariable.App = new App(el, displayMode);
+                GlobalVariable.App = new App(el, ds, displayMode);
             },
 
             // Error
@@ -75,5 +76,5 @@ window[Strings.GlobalVariable] = GlobalVariable;
 let elApp = document.querySelector("#" + Strings.AppElementId) as HTMLElement;
 if (elApp) {
     // Render the application
-    GlobalVariable.render(elApp);
+    new GlobalVariable.render(elApp);
 }

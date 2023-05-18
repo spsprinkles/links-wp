@@ -2,6 +2,7 @@ import { Components, ContextInfo, Helper, SPTypes } from "gd-sprest-bs";
 import { link45deg } from "gd-sprest-bs/build/icons/svgs/link45deg";
 import { DataSource } from "./ds";
 import { Link } from "./link";
+import Strings from "./strings";
 
 /**
  * Main Application
@@ -80,6 +81,9 @@ export class App {
 
     // Updates the styling, based on the theme
     updateTheme(themeInfo?: any) {
+        // Log
+        console.debug(`[${Strings.ProjectName}] Updating the theme...`);
+
         // Get the theme colors
         let bgColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || this._ds.getThemeColor("NavigationSelectedBackground");
         let bgHover = (themeInfo || ContextInfo.theme).primaryButtonBackgroundHovered || this._ds.getThemeColor("NavigationHoverBackground");

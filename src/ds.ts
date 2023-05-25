@@ -55,9 +55,12 @@ export class DataSource {
 
         // Return a promise
         return new Promise((resolve) => {
+            // Load the modern/classic theme information
             Helper.getCurrentTheme().then(themeInfo => {
                 // Set the theme info
                 this._themeInfo = themeInfo;
+
+                // Resolve the request
                 resolve();
             }, resolve);
         });

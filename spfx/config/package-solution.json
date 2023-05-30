@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "icon-links-client-side-solution",
+    "id": "d27c672e-ea20-49c9-89b2-f371dae0c066",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "Dade Register, Gunjan Datta",
+      "websiteUrl": "https://github.com/spsprinkles/icon-links/",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites."
+      },
+      "longDescription": {
+        "default": "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites."
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "icon-links Feature",
+        "description": "The feature that activates elements of the icon-links solution.",
+        "id": "f9ed2f1d-6ccd-4d4c-b061-de43858a2cb7",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "../../dist/icon-links.sppkg"
+  }
+}

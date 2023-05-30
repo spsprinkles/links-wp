@@ -1,5 +1,5 @@
 {
-  "name": "links-wp",
+  "name": "icon-links",
   "version": "0.0.4",
   "description": "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites.",
   "main": "src/index.ts",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spsprinkles/links-wp.git"
+    "url": "git+https://github.com/spsprinkles/icon-links.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spsprinkles/links-wp/issues"
+    "url": "https://github.com/spsprinkles/icon-links/issues"
   },
-  "homepage": "https://github.com/spsprinkles/links-wp#readme",
+  "homepage": "https://github.com/spsprinkles/icon-links#readme",
   "dependencies": {
     "datatables.net": "^1.13.4",
     "datatables.net-bs5": "^1.13.4",

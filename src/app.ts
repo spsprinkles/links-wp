@@ -26,7 +26,7 @@ export class App {
         if (this._ds.LinksList.Items.length > 0) {
             // Create the main element
             let elWP = document.createElement("div");
-            elWP.classList.add("links-wp");
+            elWP.classList.add("icon-links");
             elWP.classList.add("row");
             this._el.appendChild(elWP);
 

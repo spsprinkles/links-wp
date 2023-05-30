@@ -14,7 +14,7 @@ export const setContext = (context, sourceUrl?: string) => {
  * Global Constants
  */
 const Strings = {
-    AppElementId: "links-wp",
+    AppElementId: "icon-links",
     GlobalVariable: "LinksWP",
     Lists: {
         IconLinks: "Icon Links"

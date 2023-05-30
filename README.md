@@ -1,2 +1,2 @@
-# links-wp
+# icon-links
 A links webpart.

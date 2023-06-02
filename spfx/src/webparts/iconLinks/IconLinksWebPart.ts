@@ -1,5 +1,5 @@
-import { DisplayMode, Version } from '@microsoft/sp-core-library';
-import { IPropertyPaneConfiguration, PropertyPaneTextField } from '@microsoft/sp-property-pane';
+import { DisplayMode, Environment, Version } from '@microsoft/sp-core-library';
+import { IPropertyPaneConfiguration, PropertyPaneButton, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
 import * as strings from 'IconLinksWebPartStrings';
@@ -12,7 +12,8 @@ export interface IIconLinksWebPartProps {
 // Import the solution
 import "../../../../dist/icon-links.js";
 declare const IconLinks: {
-  render: new (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode, viewName: string, sourceUrl: string) => void;
+  render: new (el: HTMLElement, context: WebPartContext, envType: number, displayMode: DisplayMode, viewName: string, sourceUrl: string) => void;
+  viewList: () => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
 };
 
@@ -28,7 +29,7 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
     }
 
     // Render the solution
-    new IconLinks.render(this.domElement, this.context, this.displayMode, this.properties.viewName, this.properties.webUrl);
+    new IconLinks.render(this.domElement, this.context, Environment.type, this.displayMode, this.properties.viewName, this.properties.webUrl);
 
     // Set the flag
     this._hasRendered = true;
@@ -54,6 +55,13 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
           groups: [
             {
               groupFields: [
+                PropertyPaneButton("", {
+                  text: "View List",
+                  onClick: () => {
+                    // Show the list
+                    IconLinks.viewList();
+                  }
+                }),
                 PropertyPaneTextField('webUrl', {
                   label: strings.WebUrlFieldLabel,
                   description: strings.WebUrlFieldDescription

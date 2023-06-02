@@ -3,6 +3,7 @@ import { link45deg } from "gd-sprest-bs/build/icons/svgs/link45deg";
 import { Datatable } from "./datatable";
 import { DataSource } from "./ds";
 import { Link } from "./link";
+import Strings from "./strings";
 
 /**
  * Main Application
@@ -47,8 +48,11 @@ export class App {
                 this.render(displayMode);
             });
 
-            // Render the edit options
-            this.renderEdit();
+            // See if we are in classic mode
+            if (Strings.IsClassic) {
+                // Render the edit options
+                this.renderEdit();
+            }
         }
 
         // Ensure links exist
@@ -108,6 +112,12 @@ export class App {
                 this._dt.show();
             }
         })
+    }
+
+    // Shows the datatable
+    showDatatable() {
+        // Show the datatable
+        this._dt.show();
     }
 
     // Updates the styling, based on the theme

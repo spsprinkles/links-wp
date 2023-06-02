@@ -1,12 +1,13 @@
-import { ContextInfo } from "gd-sprest-bs";
+import { ContextInfo, SPTypes } from "gd-sprest-bs";
 
 // Sets the context information
 // This is for SPFx or Teams solutions
-export const setContext = (context, sourceUrl?: string) => {
+export const setContext = (context, envType?: number, sourceUrl?: string) => {
     // Set the context
     ContextInfo.setPageContext(context.pageContext);
 
-    // Update the source url
+    // Update the properties
+    Strings.IsClassic = envType == SPTypes.EnvironmentType.ClassicSharePoint;
     Strings.SourceUrl = sourceUrl || ContextInfo.webServerRelativeUrl;
 }
 
@@ -15,7 +16,8 @@ export const setContext = (context, sourceUrl?: string) => {
  */
 const Strings = {
     AppElementId: "icon-links",
-    GlobalVariable: "LinksWP",
+    GlobalVariable: "IconLinks",
+    IsClassic: true,
     Lists: {
         IconLinks: "Icon Links"
     },

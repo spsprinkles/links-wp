@@ -8,6 +8,7 @@
     "build": "webpack --mode=development",
     "prod": "webpack --mode=production",
     "spfx": "cd spfx && npm run package",
+    "serve": "npm run build && cd spfx && gulp serve --nobrowser",
     "increment-version": "node ./incrementVersion.js"
   },
   "repository": {

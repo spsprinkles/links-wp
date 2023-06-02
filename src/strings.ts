@@ -22,6 +22,6 @@ const Strings = {
     ProjectName: "Links WebPart",
     ProjectDescription: "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites.",
     SourceUrl: ContextInfo.webServerRelativeUrl,
-    Version: "0.0.2"
+    Version: "0.0.3"
 };
 export default Strings;

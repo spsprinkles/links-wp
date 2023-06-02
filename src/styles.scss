@@ -70,6 +70,11 @@
     -webkit-line-clamp: 2;
 }
 
+/* OffCanvas Visiblity */
+#core-canvas .offcanvas.show {
+    z-index: 1060;
+}
+
 /* Tippy Tooltip secondary theme color */
 .tippy-box[data-theme~='secondary'] {
     background-color: var(--sp-btn-bg);

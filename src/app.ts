@@ -1,5 +1,6 @@
 import { Components, ContextInfo, Helper, SPTypes } from "gd-sprest-bs";
 import { link45deg } from "gd-sprest-bs/build/icons/svgs/link45deg";
+import { Datatable } from "./datatable";
 import { DataSource } from "./ds";
 import { Link } from "./link";
 
@@ -8,6 +9,7 @@ import { Link } from "./link";
  */
 export class App {
     private _ds: DataSource = null;
+    private _dt: Datatable = null;
     private _el: HTMLElement = null;
 
     // Constructor
@@ -16,26 +18,8 @@ export class App {
         this._ds = ds;
         this._el = el;
 
-        // See if we are editing the page
-        if (this.isInEditMode(displayMode)) {
-            // Render the dashboard
-            this.renderEdit();
-        }
-
-        // Ensure links exist
-        if (this._ds.LinksList.Items.length > 0) {
-            // Create the main element
-            let elWP = document.createElement("div");
-            elWP.classList.add("icon-links");
-            elWP.classList.add("row");
-            this._el.appendChild(elWP);
-
-            // Render the dashboard
-            this.render(elWP);
-
-            // Update the theme
-            this.updateTheme();
-        }
+        // Render the component
+        this.render(displayMode);
     }
 
     // Returns true if the page is in edit mode
@@ -50,8 +34,41 @@ export class App {
         }
     }
 
-    // Renders the dashboard
-    private render(el: HTMLElement) {
+    // Renders the component
+    private render(displayMode: number) {
+        // See if we are editing the page
+        if (this.isInEditMode(displayMode)) {
+            // Create the datatable if it doesn't exist
+            this._dt = this._dt || new Datatable(this._ds, () => {
+                // Clear the element
+                while (this._el.firstChild) { this._el.removeChild(this._el.firstChild); }
+
+                // Render the component
+                this.render(displayMode);
+            });
+
+            // Render the edit options
+            this.renderEdit();
+        }
+
+        // Ensure links exist
+        if (this._ds.LinksList.Items.length > 0) {
+            // Create the main element
+            let elWP = document.createElement("div");
+            elWP.classList.add("icon-links");
+            elWP.classList.add("row");
+            this._el.appendChild(elWP);
+
+            // Render the dashboard
+            this.renderIcons(elWP);
+
+            // Update the theme
+            this.updateTheme();
+        }
+    }
+
+    // Renders the icons
+    private renderIcons(el: HTMLElement) {
         // Parse the links
         for (let i = 0; i < this._ds.LinksList.Items.length; i++) {
             // Render the link
@@ -76,6 +93,21 @@ export class App {
             }
         });
         btn.el.classList.remove("btn-icon");
+
+        // Render a view button
+        Components.Button({
+            el: this._el,
+            className: "links-list ms-1 my-1",
+            iconSize: 22,
+            iconType: link45deg,
+            isSmall: true,
+            text: "View Icons",
+            type: Components.ButtonTypes.OutlineSecondary,
+            onClick: () => {
+                // Show the datatable
+                this._dt.show();
+            }
+        })
     }
 
     // Updates the styling, based on the theme

@@ -4,6 +4,7 @@ import { appIndicator } from "gd-sprest-bs/build/icons/svgs/appIndicator";
 import { plusSquare } from "gd-sprest-bs/build/icons/svgs/plusSquare";
 import * as jQuery from "jquery";
 import { DataSource, ILinkItem } from "./ds";
+import { Forms } from "./forms";
 import Strings from "./strings";
 
 /**
@@ -95,17 +96,12 @@ export class Datatable {
                                     type: Components.ButtonTypes.OutlineSecondary,
                                     onClick: () => {
                                         // Show the new form
-                                        this._ds.LinksList.newForm({
-                                            onUpdate: (item: ILinkItem) => {
-                                                // Refresh the datasource
-                                                this._ds.LinksList.refreshItem(item.Id).then(() => {
-                                                    // Refresh the dashboard
-                                                    this._dashboard.refresh(this._ds.LinksList.Items);
+                                        Forms.new(this._ds, () => {
+                                            // Refresh the dashboard
+                                            this._dashboard.refresh(this._ds.LinksList.Items);
 
-                                                    // Call the update event
-                                                    this._onUpdate();
-                                                });
-                                            }
+                                            // Call the update event
+                                            this._onUpdate();
                                         });
                                     }
                                 },
@@ -181,19 +177,13 @@ export class Datatable {
                                     text: "Edit",
                                     type: Components.ButtonTypes.OutlineSuccess,
                                     onClick: () => {
-                                        // Edit the item
-                                        this._ds.LinksList.editForm({
-                                            itemId: item.Id,
-                                            onUpdate: () => {
-                                                // Refresh the item
-                                                this._ds.LinksList.refreshItem(item.Id).then(() => {
-                                                    // Refresh the datatable
-                                                    this._dashboard.refresh(this._ds.LinksList.Items);
+                                        // Show the edit form
+                                        Forms.edit(item.Id, this._ds, () => {
+                                            // Refresh the dashboard
+                                            this._dashboard.refresh(this._ds.LinksList.Items);
 
-                                                    // Call the update event
-                                                    this._onUpdate();
-                                                });
-                                            }
+                                            // Call the update event
+                                            this._onUpdate();
                                         });
                                     }
                                 }

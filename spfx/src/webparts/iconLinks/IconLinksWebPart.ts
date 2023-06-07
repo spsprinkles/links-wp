@@ -5,6 +5,7 @@ import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
 import * as strings from 'IconLinksWebPartStrings';
 
 export interface IIconLinksWebPartProps {
+  listName: string;
   viewName: string;
   webUrl: string;
 }
@@ -12,7 +13,7 @@ export interface IIconLinksWebPartProps {
 // Import the solution
 import "../../../../dist/icon-links.js";
 declare const IconLinks: {
-  render: new (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode, viewName: string, sourceUrl: string) => void;
+  render: new (el: HTMLElement, context: WebPartContext, displayMode: DisplayMode, viewName: string, listName: string, sourceUrl: string) => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
 };
 
@@ -28,7 +29,7 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
     }
 
     // Render the solution
-    new IconLinks.render(this.domElement, this.context, this.displayMode, this.properties.viewName, this.properties.webUrl);
+    new IconLinks.render(this.domElement, this.context, this.displayMode, this.properties.viewName, this.properties.listName, this.properties.webUrl);
 
     // Set the flag
     this._hasRendered = true;
@@ -57,6 +58,10 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
                 PropertyPaneTextField('webUrl', {
                   label: strings.WebUrlFieldLabel,
                   description: strings.WebUrlFieldDescription
+                }),
+                PropertyPaneTextField('listName', {
+                  label: strings.ListNameFieldLabel,
+                  description: strings.ListNameFieldDescription
                 }),
                 PropertyPaneTextField('viewName', {
                   label: strings.ViewNameFieldLabel,

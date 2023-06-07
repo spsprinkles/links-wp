@@ -11,7 +11,7 @@ import "./styles.scss";
 const GlobalVariable = {
     App: null,
     Configuration,
-    render: (el: HTMLElement, context?, displayMode?: number, viewName?: string, sourceUrl?: string) => {
+    render: (el: HTMLElement, context?, displayMode?: number, viewName?: string, listName?: string, sourceUrl?: string) => {
         // See if the page context exists
         if (context) {
             // Set the context
@@ -19,6 +19,12 @@ const GlobalVariable = {
 
             // Update the configuration
             Configuration.setWebUrl(sourceUrl || ContextInfo.webServerRelativeUrl);
+
+            // See if the list name is set
+            if (listName) {
+                // Update the configuration
+                Configuration._configuration.ListCfg[0].ListInformation.Title = listName;
+            }
         }
 
         // Initialize the data source

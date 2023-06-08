@@ -1,5 +1,7 @@
 declare interface IIconLinksWebPartStrings {
   BasicGroupName: string;
+  ListNameFieldDescription: string;
+  ListNameFieldLabel: string;
   ViewListFieldDescription: string;
   ViewListFieldLabel: string;
   ViewNameFieldDescription: string;

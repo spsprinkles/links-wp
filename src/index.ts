@@ -11,11 +11,11 @@ import "./styles.scss";
 const GlobalVariable = {
     App: null,
     Configuration,
-    render: (el: HTMLElement, context?, displayMode?: number, viewName?: string, sourceUrl?: string) => {
+    render: (el: HTMLElement, context?, envType?: number, displayMode?: number, viewName?: string, sourceUrl?: string) => {
         // See if the page context exists
         if (context) {
             // Set the context
-            setContext(context, sourceUrl);
+            setContext(context, envType, sourceUrl);
 
             // Update the configuration
             Configuration.setWebUrl(sourceUrl || ContextInfo.webServerRelativeUrl);
@@ -66,6 +66,9 @@ const GlobalVariable = {
     },
     updateTheme: (themeInfo) => {
         GlobalVariable.App ? GlobalVariable.App.updateTheme(themeInfo) : null;
+    },
+    viewList: () => {
+        GlobalVariable.App ? GlobalVariable.App.showDatatable() : null;
     }
 };
 

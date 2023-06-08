@@ -1,6 +1,6 @@
 {
   "name": "icon-links",
-  "version": "0.0.4",
+  "version": "0.0.3",
   "description": "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites.",
   "main": "src/index.ts",
   "scripts": {
@@ -8,6 +8,7 @@
     "build": "webpack --mode=development",
     "prod": "webpack --mode=production",
     "spfx": "cd spfx && npm run package",
+    "serve": "npm run build && cd spfx && gulp serve --nobrowser",
     "increment-version": "node ./incrementVersion.js"
   },
   "repository": {

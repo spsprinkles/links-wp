@@ -1,6 +1,8 @@
-define([], function() {
+define([], function () {
   return {
     "BasicGroupName": "Group Name",
+    "ViewListFieldDescription": "Click to view the list view for the icons.",
+    "ViewListFieldLabel": "View List",
     "ViewNameFieldDescription": "The view name to load the links from. If blank, it will default to the 'All Items' view.",
     "ViewNameFieldLabel": "View Name",
     "WebUrlFieldDescription": "The web containing the links list. If blank, it will default to the current web.",

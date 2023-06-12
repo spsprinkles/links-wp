@@ -18,7 +18,6 @@ declare const IconLinks: {
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
 }
 
-
 export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWebPartProps> {
   private _hasRendered: boolean = false;
 

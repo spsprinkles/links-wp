@@ -16,7 +16,7 @@ declare const IconLinks: {
   render: new (el: HTMLElement, context: WebPartContext, envType: number, displayMode: DisplayMode, viewName: string, listName: string, sourceUrl: string) => void;
   viewList: () => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
-};
+}
 
 
 export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWebPartProps> {

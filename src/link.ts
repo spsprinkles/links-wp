@@ -22,6 +22,8 @@ export class Link {
         // Ensure a svg icon exists
         let svgIcon = elIcon.querySelector("svg");
         if (svgIcon) {
+            // Hide icon from assistive technologies
+            svgIcon.setAttribute("aria-hidden", "true");
             // Get the path element
             let elSvgPath = svgIcon.querySelector("path");
             if (elSvgPath) {

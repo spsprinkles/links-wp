@@ -58,6 +58,7 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
               groupFields: [
                 PropertyPaneDropdown('justify', {
                   label: strings.JustifyFieldLabel,
+                  selectedKey: 'justify-content-start',
                   options: [
                     { key: 'justify-content-start', text: 'Left' },
                     { key: 'justify-content-end', text: 'Right' },

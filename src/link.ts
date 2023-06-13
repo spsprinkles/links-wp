@@ -31,7 +31,7 @@ export class Link {
 
             // Generate the html
             let html = `<div class="col">
-                <a class="link-icon" href="${link.LinkUrl || "#"}" target="${link.OpenInNewTab ? "_blank" : "_self"}">
+                <a class="link-icon" href="${link.LinkUrl || "#"}" target="${link.OpenInNewTab ? "_blank" : "_self"}" aria-label="${link.LinkTooltip || link.Title}">
                     ${svgIcon.outerHTML}
                     <div class="link-text">${link.Title}</div>
                 </a>

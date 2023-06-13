@@ -14,13 +14,13 @@ export class App {
     private _el: HTMLElement = null;
 
     // Constructor
-    constructor(el: HTMLElement, ds: DataSource, displayMode: number) {
+    constructor(el: HTMLElement, ds: DataSource, displayMode: number, justify: string) {
         // Save the properties
         this._ds = ds;
         this._el = el;
 
         // Render the component
-        this.render(displayMode);
+        this.render(displayMode, justify);
     }
 
     // Returns true if the page is in edit mode
@@ -36,7 +36,7 @@ export class App {
     }
 
     // Renders the component
-    private render(displayMode: number) {
+    private render(displayMode: number, justify: string) {
         // See if we are editing the page
         if (this.isInEditMode(displayMode)) {
             // Create the datatable if it doesn't exist
@@ -45,7 +45,7 @@ export class App {
                 while (this._el.firstChild) { this._el.removeChild(this._el.firstChild); }
 
                 // Render the component
-                this.render(displayMode);
+                this.render(displayMode, justify);
             });
 
             // See if we are in classic mode
@@ -59,8 +59,9 @@ export class App {
         if (this._ds.LinksList.Items.length > 0) {
             // Create the main element
             let elWP = document.createElement("div");
+            elWP.classList.add("d-flex");
             elWP.classList.add("flex-wrap");
-            elWP.classList.add("icon-links");
+            justify ? elWP.classList.add(justify) : null;
             elWP.classList.add("row");
             this._el.appendChild(elWP);
 

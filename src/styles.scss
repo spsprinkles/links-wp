@@ -14,11 +14,6 @@
     }
 }
 
-/** Links Webpart */
-.icon-links {
-    display: flex;
-}
-
 /** Link Icon */
 .link-icon {
     background-color: var(--sp-btn-bg);
@@ -75,19 +70,19 @@
     z-index: 1060;
 }
 
-/* Tippy Tooltip secondary theme color */
-.tippy-box[data-theme~='secondary'] {
+/* Tippy Tooltip SharePoint theme color */
+.tippy-box[data-theme~='sharepoint'] {
     background-color: var(--sp-btn-bg);
 }
-.tippy-box[data-theme~='secondary'][data-placement^='top']>.tippy-arrow::before {
+.tippy-box[data-theme~='sharepoint'][data-placement^='top']>.tippy-arrow::before {
     border-top-color: var(--sp-btn-bg);
 }
-.tippy-box[data-theme~='secondary'][data-placement^='bottom']>.tippy-arrow::before {
+.tippy-box[data-theme~='sharepoint'][data-placement^='bottom']>.tippy-arrow::before {
     border-bottom-color: var(--sp-btn-bg);
 }
-.tippy-box[data-theme~='secondary'][data-placement^='left']>.tippy-arrow::before {
+.tippy-box[data-theme~='sharepoint'][data-placement^='left']>.tippy-arrow::before {
     border-left-color: var(--sp-btn-bg);
 }
-.tippy-box[data-theme~='secondary'][data-placement^='right']>.tippy-arrow::before {
+.tippy-box[data-theme~='sharepoint'][data-placement^='right']>.tippy-arrow::before {
     border-right-color: var(--sp-btn-bg);
 }

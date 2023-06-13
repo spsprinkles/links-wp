@@ -1,10 +1,11 @@
 import { DisplayMode, Environment, Version } from '@microsoft/sp-core-library';
-import { IPropertyPaneConfiguration, PropertyPaneButton, PropertyPaneTextField } from '@microsoft/sp-property-pane';
+import { IPropertyPaneConfiguration, PropertyPaneButton, PropertyPaneDropdown, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
 import * as strings from 'IconLinksWebPartStrings';
 
 export interface IIconLinksWebPartProps {
+  justify: string;
   listName: string;
   viewName: string;
   webUrl: string;
@@ -13,7 +14,7 @@ export interface IIconLinksWebPartProps {
 // Import the solution
 import "../../../../dist/icon-links.js";
 declare const IconLinks: {
-  render: new (el: HTMLElement, context: WebPartContext, envType: number, displayMode: DisplayMode, viewName: string, listName: string, sourceUrl: string) => void;
+  render: new (el: HTMLElement, context: WebPartContext, envType: number, displayMode: DisplayMode, justify: string, viewName: string, listName: string, sourceUrl: string) => void;
   viewList: () => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
 }
@@ -29,7 +30,7 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
     }
 
     // Render the solution
-    new IconLinks.render(this.domElement, this.context, Environment.type, this.displayMode, this.properties.viewName, this.properties.listName, this.properties.webUrl);
+    new IconLinks.render(this.domElement, this.context, Environment.type, this.displayMode, this.properties.justify, this.properties.viewName, this.properties.listName, this.properties.webUrl);
 
     // Set the flag
     this._hasRendered = true;
@@ -55,12 +56,15 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
           groups: [
             {
               groupFields: [
-                PropertyPaneButton("", {
-                  text: "View List",
-                  onClick: () => {
-                    // Show the list
-                    IconLinks.viewList();
-                  }
+                PropertyPaneDropdown('justify', {
+                  label: strings.JustifyFieldLabel,
+                  options: [
+                    { key: 'justify-content-start', text: 'Left' },
+                    { key: 'justify-content-end', text: 'Right' },
+                    { key: 'justify-content-center', text: 'Center' },
+                    { key: 'justify-content-between', text: 'Between' },
+                    { key: 'justify-content-around', text: 'Around' }
+                  ]
                 }),
                 PropertyPaneTextField('webUrl', {
                   label: strings.WebUrlFieldLabel,
@@ -73,6 +77,13 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
                 PropertyPaneTextField('viewName', {
                   label: strings.ViewNameFieldLabel,
                   description: strings.ViewNameFieldDescription
+                }),
+                PropertyPaneButton("", {
+                  text: "Edit Links",
+                  onClick: () => {
+                    // Show the list
+                    IconLinks.viewList();
+                  }
                 })
               ]
             }

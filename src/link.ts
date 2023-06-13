@@ -49,7 +49,10 @@ export class Link {
                 // Render the tooltip
                 Components.Tooltip({
                     content: link.LinkTooltip,
-                    target: elCol
+                    target: elCol,
+                    options: {
+                        theme: "sharepoint"
+                    }
                 })
             }
 

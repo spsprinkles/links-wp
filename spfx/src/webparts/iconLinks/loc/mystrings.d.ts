@@ -1,5 +1,6 @@
 declare interface IIconLinksWebPartStrings {
   BasicGroupName: string;
+  JustifyFieldLabel: string;
   ListNameFieldDescription: string;
   ListNameFieldLabel: string;
   ViewListFieldDescription: string;

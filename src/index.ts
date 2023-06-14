@@ -44,7 +44,7 @@ const GlobalVariable = {
                 // Render a button to install the solution
                 let btn = Components.Button({
                     el,
-                    text: "Install App",
+                    text: "Install Icon Links",
                     type: Components.ButtonTypes.OutlinePrimary,
                     onClick: () => {
                         if (installFl) {

@@ -61,10 +61,10 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
                   selectedKey: 'justify-content-start',
                   options: [
                     { key: 'justify-content-start', text: 'Left' },
-                    { key: 'justify-content-end', text: 'Right' },
                     { key: 'justify-content-center', text: 'Center' },
-                    { key: 'justify-content-between', text: 'Between' },
-                    { key: 'justify-content-around', text: 'Around' }
+                    { key: 'justify-content-end', text: 'Right' },
+                    { key: 'justify-content-around', text: 'Around' },
+                    { key: 'justify-content-between', text: 'Between' }
                   ]
                 }),
                 PropertyPaneTextField('webUrl', {

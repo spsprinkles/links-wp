@@ -12,6 +12,7 @@ import "./styles.scss";
 const GlobalVariable = {
     App: null,
     Configuration,
+    description: Strings.ProjectDescription,
     render: (el: HTMLElement, context?, envType?: number, displayMode?: number, justify?: string, viewName?: string, listName?: string, sourceUrl?: string) => {
         // See if the page context exists
         if (context) {
@@ -81,6 +82,7 @@ const GlobalVariable = {
     updateTheme: (themeInfo) => {
         GlobalVariable.App ? GlobalVariable.App.updateTheme(themeInfo) : null;
     },
+    version: Strings.Version,
     viewList: () => {
         GlobalVariable.App ? GlobalVariable.App.showDatatable() : null;
     }

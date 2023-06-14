@@ -113,6 +113,11 @@
     -webkit-line-clamp: 2;
 }
 
+/* Align version to the right in the Settings Panel */
+div.spPropertyPaneContainer div[aria-label='Icon Links property pane'] div[data-automation-id='propertyPaneGroupContent']>div:last-child label {
+    text-align: right;
+}
+
 /* OffCanvas Visiblity */
 #core-canvas .offcanvas.show {
     z-index: 1060;

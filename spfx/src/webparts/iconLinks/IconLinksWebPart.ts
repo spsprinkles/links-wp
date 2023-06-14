@@ -1,5 +1,5 @@
 import { DisplayMode, Environment, Version } from '@microsoft/sp-core-library';
-import { IPropertyPaneConfiguration, PropertyPaneButton, PropertyPaneDropdown, PropertyPaneHorizontalRule, PropertyPaneTextField } from '@microsoft/sp-property-pane';
+import { IPropertyPaneConfiguration, PropertyPaneButton, PropertyPaneDropdown, PropertyPaneHorizontalRule, PropertyPaneLabel, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
 import * as strings from 'IconLinksWebPartStrings';
@@ -14,9 +14,11 @@ export interface IIconLinksWebPartProps {
 // Import the solution
 import "../../../../dist/icon-links.js";
 declare const IconLinks: {
+  description: string;
   render: new (el: HTMLElement, context: WebPartContext, envType: number, displayMode: DisplayMode, justify: string, viewName: string, listName: string, sourceUrl: string) => void;
-  viewList: () => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
+  version: string;
+  viewList: () => void;
 }
 
 export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWebPartProps> {
@@ -46,7 +48,7 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
   }
 
   protected get dataVersion(): Version {
-    return Version.parse('1.0');
+    return Version.parse(IconLinks.version);
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
@@ -86,10 +88,16 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
                     // Show the list
                     IconLinks.viewList();
                   }
+                }),
+                PropertyPaneLabel('version', {
+                  text: "v" + IconLinks.version
                 })
               ]
             }
-          ]
+          ],
+          header: {
+            description: IconLinks.description
+          }
         }
       ]
     };

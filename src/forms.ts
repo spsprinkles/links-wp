@@ -126,7 +126,7 @@ export class Forms {
             onCreateEditForm: props => { return this.configureForm(props); },
             onSetHeader: (el) => {
                 let h5 = el.querySelector("h5") as HTMLElement;
-                if (h5) { h5.innerText = "New Icon"; }
+                if (h5) { h5.innerText = "New Icon Link"; }
             },
             onUpdate: (item: ILinkItem) => {
                 // Refresh the data

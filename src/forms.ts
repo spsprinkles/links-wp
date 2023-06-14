@@ -27,7 +27,7 @@ export class Forms {
             if (fld.InternalName == "LinkIcon") {
                 // Set a tooltip
                 Components.Tooltip({
-                    content: "Click to upload an SVG image file",
+                    content: "Click to upload an SVG icon file",
                     placement: Components.TooltipPlacements.Left,
                     target: ctrl.textbox.elTextbox,
                     type: Components.TooltipTypes.LightBorder

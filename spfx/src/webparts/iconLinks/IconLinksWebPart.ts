@@ -1,5 +1,5 @@
 import { DisplayMode, Environment, Version } from '@microsoft/sp-core-library';
-import { IPropertyPaneConfiguration, PropertyPaneButton, PropertyPaneDropdown, PropertyPaneTextField } from '@microsoft/sp-property-pane';
+import { IPropertyPaneConfiguration, PropertyPaneButton, PropertyPaneDropdown, PropertyPaneHorizontalRule, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
 import * as strings from 'IconLinksWebPartStrings';
@@ -79,7 +79,8 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
                   label: strings.ViewNameFieldLabel,
                   description: strings.ViewNameFieldDescription
                 }),
-                PropertyPaneButton("", {
+                PropertyPaneHorizontalRule(),
+                PropertyPaneButton('editLinks', {
                   text: "Edit Links",
                   onClick: () => {
                     // Show the list

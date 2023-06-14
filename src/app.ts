@@ -50,7 +50,7 @@ export class App {
 
             // See if we are in classic mode
             if (Strings.IsClassic) {
-                // Render the edit options
+                // Render the edit button
                 this.renderEdit();
             }
         }
@@ -70,6 +70,11 @@ export class App {
 
             // Update the theme
             this.updateTheme();
+        } else {
+            if (!Strings.IsClassic) {
+                // Render the edit button
+                this.renderEdit();
+            }
         }
     }
 
@@ -84,7 +89,7 @@ export class App {
 
     // Render the edit information
     private renderEdit() {
-        // Render a view button
+        // Render a button to Edit Icon Links
         let btn = Components.Button({
             el: this._el,
             className: "ms-1 my-1",
@@ -92,8 +97,8 @@ export class App {
             iconSize: 22,
             iconType: infoSquare,
             isSmall: true,
-            text: "Edit Links",
-            type: Components.ButtonTypes.OutlineSecondary,
+            text: "Edit Icon Links",
+            type: Components.ButtonTypes.OutlinePrimary,
             onClick: () => {
                 // Show the datatable
                 this._dt.show();

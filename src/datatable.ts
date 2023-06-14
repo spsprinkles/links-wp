@@ -43,6 +43,9 @@ export class Datatable {
         // Set the size
         Modal.setType(Components.ModalTypes.Full);
 
+        // Hide the footer
+        Modal.FooterElement.classList.add("d-none");
+
         // Render the dashboard
         this._dashboard = new Dashboard({
             el: Modal.BodyElement,

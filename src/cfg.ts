@@ -30,7 +30,7 @@ export const Configuration = Helper.SPConfig({
                 {
                     name: "LinkIcon",
                     title: "Icon",
-                    description: "The svg html markup of the icon. Reference https://www.flicon.io/ for examples.",
+                    description: "The contents within an SVG icon file.&lt;br/&gt;Free SVG icons: &lt;a href='https://icons.getbootstrap.com' target='_blank'&gt;Bootstrap Icons&lt;/a&gt;, &lt;a href='https://www.flicon.io' target='_blank'&gt;Flicon&lt;/a&gt;, &lt;a href='https://fluenticons.co' target='_blank'&gt;Fluent Icons&lt;/a&gt;",
                     type: Helper.SPCfgFieldType.Note,
                     noteType: SPTypes.FieldNoteType.TextOnly
                 } as Helper.IFieldInfoNote,

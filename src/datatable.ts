@@ -58,7 +58,7 @@ export class Datatable {
 
                     // Set the brand
                     let brand = document.createElement("div");
-                    brand.className = "d-flex";
+                    brand.className = "align-items-center d-flex";
                     brand.appendChild(infoSquare());
                     brand.append(Strings.ProjectName);
                     brand.querySelector("svg").classList.add("me-75");
@@ -89,7 +89,7 @@ export class Datatable {
                                 type: Components.TooltipTypes.LightBorder,
                                 btnProps: {
                                     // Render the icon button
-                                    className: "icon-btn p-1 pe-2",
+                                    className: "align-items-center d-flex icon-btn p-1 pe-2",
                                     iconClassName: "me-1",
                                     iconType: plusSquare,
                                     iconSize: 24,
@@ -207,7 +207,7 @@ export class Datatable {
                                 type: Components.TooltipTypes.LightBorder,
                                 btnProps: {
                                     // Render the icon button
-                                    className: "icon-btn p-1",
+                                    className: "align-items-center d-flex icon-btn p-1",
                                     iconClassName: "me-1",
                                     iconType: pencilSquare,
                                     iconSize: 24,

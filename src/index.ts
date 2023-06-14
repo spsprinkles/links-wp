@@ -1,4 +1,5 @@
 import { Components, ContextInfo } from "gd-sprest-bs";
+import { infoSquare } from "gd-sprest-bs/build/icons/svgs/infoSquare";
 import { App } from "./app";
 import { Configuration } from "./cfg";
 import { DataSource } from "./ds";
@@ -44,6 +45,11 @@ const GlobalVariable = {
                 // Render a button to install the solution
                 let btn = Components.Button({
                     el,
+                    className: "ms-1 my-1",
+                    iconClassName: "btn-img",
+                    iconSize: 22,
+                    iconType: infoSquare,
+                    isSmall: true,
                     text: "Install Icon Links",
                     type: Components.ButtonTypes.OutlinePrimary,
                     onClick: () => {
@@ -68,6 +74,7 @@ const GlobalVariable = {
                         });
                     }
                 });
+                btn.el.classList.remove("btn-icon");
             }
         );
     },

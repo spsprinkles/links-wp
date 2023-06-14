@@ -1,11 +1,10 @@
 import { LoadingDialog } from "dattatable";
-import { Components, Helper } from "gd-sprest-bs";
+import { Components, Helper, SPTypes } from "gd-sprest-bs";
 import { DataSource, ILinkItem } from "./ds";
 
 // Acceptable image file types
 const ImageExtensions = [
-    ".apng", ".avif", ".bmp", ".cur", ".gif", ".jpg", ".jpeg", ".jfif",
-    ".ico", ".pjpeg", ".pjp", ".png", ".svg", ".tif", ".tiff", ".webp"
+    ".svg"
 ];
 
 /**
@@ -14,14 +13,24 @@ const ImageExtensions = [
 export class Forms {
     // Configures the form
     private static configureForm(props: Components.IListFormEditProps): Components.IListFormEditProps {
+        // Set the control rendering event
+        props.onControlRendering = (ctrl, fld) => {
+            // See if this is a boolean field
+            if (fld.FieldTypeKind == SPTypes.FieldType.Boolean) {
+                // Set the option to display as a switch
+                (ctrl as Components.IFormControlPropsCheckbox).type = Components.FormControlTypes.Switch;
+            }
+        }
         // Set the control rendered event
         props.onControlRendered = (ctrl, fld) => {
             // See if this is a url field
             if (fld.InternalName == "LinkIcon") {
                 // Set a tooltip
                 Components.Tooltip({
-                    content: "Click to upload an image file.",
-                    target: ctrl.textbox.elTextbox
+                    content: "Click to upload an SVG image file",
+                    placement: Components.TooltipPlacements.Left,
+                    target: ctrl.textbox.elTextbox,
+                    type: Components.TooltipTypes.LightBorder
                 });
 
                 // Make this textbox read-only
@@ -30,7 +39,7 @@ export class Forms {
                 // Set a click event
                 ctrl.textbox.elTextbox.addEventListener("click", () => {
                     // Display a file upload dialog
-                    Helper.ListForm.showFileDialog(["image/*"]).then(file => {
+                    Helper.ListForm.showFileDialog(ImageExtensions).then(file => {
                         // Clear the value
                         ctrl.textbox.setValue("");
 
@@ -40,7 +49,7 @@ export class Forms {
                         // Validate the file type
                         if (this.isImageFile(fileName)) {
                             // Show a loading dialog
-                            LoadingDialog.setHeader("Reading the File");
+                            LoadingDialog.setHeader("Reading the file");
                             LoadingDialog.setBody("This will close after the file is converted...");
                             LoadingDialog.show();
 
@@ -53,12 +62,12 @@ export class Forms {
                                 // Close the dialog
                                 LoadingDialog.hide();
                             }
-                            reader.readAsDataURL(file.src);
+                            reader.readAsText(file.src);
                         } else {
                             // Display an error message
                             ctrl.updateValidation(ctrl.el, {
                                 isValid: false,
-                                invalidMessage: "The file must be a valid image file. Valid types: png, jpg, jpeg, gif"
+                                invalidMessage: "The file uploaded must be a valid SVG image."
                             });
                         }
                     });
@@ -75,6 +84,14 @@ export class Forms {
         ds.LinksList.editForm({
             itemId,
             onCreateEditForm: props => { return this.configureForm(props); },
+            onSetFooter: (el) => {
+                let btn = el.querySelector("button") as HTMLButtonElement;
+                if (btn) { btn.innerText = "Save" }
+            },
+            onSetHeader: (el) => {
+                let h5 = el.querySelector("h5") as HTMLElement;
+                if (h5) { h5.prepend("Edit: "); }
+            },
             onUpdate: (item: ILinkItem) => {
                 // Refresh the item
                 ds.LinksList.refreshItem(item.Id).then(() => {
@@ -107,6 +124,10 @@ export class Forms {
     static new(ds: DataSource, onUpdate: () => void) {
         ds.LinksList.newForm({
             onCreateEditForm: props => { return this.configureForm(props); },
+            onSetHeader: (el) => {
+                let h5 = el.querySelector("h5") as HTMLElement;
+                if (h5) { h5.innerText = "New Icon"; }
+            },
             onUpdate: (item: ILinkItem) => {
                 // Refresh the data
                 ds.LinksList.refreshItem(item.Id).then(() => {
@@ -131,11 +152,24 @@ export class Forms {
 
                         // Ensure a value exists
                         if (item[fld.InternalName]) {
-                            // Display the image
-                            let elImage = document.createElement("img");
-                            elImage.src = item[fld.InternalName];
-                            elImage.style.maxHeight = "250px";
-                            ctrl.el.appendChild(elImage);
+                            // Read the icon
+                            let elIcon = document.createElement("div");
+                            elIcon.innerHTML = item[fld.InternalName];
+
+                            // Ensure a svg icon exists
+                            let svgIcon = elIcon.querySelector("svg");
+                            if (svgIcon) {
+                                // Get the path element
+                                let elSvgPath = svgIcon.querySelector("path");
+                                if (elSvgPath) {
+                                    // Clear the color
+                                    elSvgPath.removeAttribute("fill");
+                                }
+                                svgIcon.style.fill = "#212529";
+                                svgIcon.style.height = "32px";
+                                svgIcon.style.width = "32px";
+                            }
+                            ctrl.el.appendChild(elIcon);
                         }
                     }
                 }

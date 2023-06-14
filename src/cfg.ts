@@ -53,7 +53,7 @@ export const Configuration = Helper.SPConfig({
                     ViewName: "All Items",
                     ViewQuery: "<OrderBy><FieldRef Name='LinkOrder' /></OrderBy>",
                     ViewFields: [
-                        "LinkTitle", "LinkUrl", "LinkIcon", "LinkTooltip", "OpenInNewTab"
+                        "LinkTitle", "LinkOrder", "LinkUrl", "LinkIcon", "LinkTooltip", "OpenInNewTab"
                     ]
                 }
             ]

@@ -6,6 +6,10 @@
     --sp-btn-text: #fff;
 }
 
+.bs .bg-sharepoint {
+    background-color: var(--sp-btn-bg) !important;
+}
+
 /** Edit Links Button SVG */
 .edit-btn-img {
     margin: 0 0.25rem 0.1rem -0.25rem;

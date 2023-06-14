@@ -81,7 +81,7 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
                 }),
                 PropertyPaneHorizontalRule(),
                 PropertyPaneButton('editLinks', {
-                  text: "Edit Links",
+                  text: "Edit Icon Links",
                   onClick: () => {
                     // Show the list
                     IconLinks.viewList();

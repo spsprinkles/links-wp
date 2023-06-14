@@ -1,6 +1,7 @@
 import { Dashboard, Modal } from "dattatable";
 import { Components } from "gd-sprest-bs";
-import { appIndicator } from "gd-sprest-bs/build/icons/svgs/appIndicator";
+import { infoSquare } from "gd-sprest-bs/build/icons/svgs/infoSquare";
+import { pencilSquare } from "gd-sprest-bs/build/icons/svgs/pencilSquare";
 import { plusSquare } from "gd-sprest-bs/build/icons/svgs/plusSquare";
 import * as jQuery from "jquery";
 import { DataSource, ILinkItem } from "./ds";
@@ -53,12 +54,12 @@ export class Datatable {
                 showFilter: false,
                 onRendering: props => {
                     // Set the class names
-                    props.className = "bg-sharepoint navbar-expand rounded-top";
+                    props.className = "bg-sharepoint navbar-expand rounded";
 
                     // Set the brand
                     let brand = document.createElement("div");
                     brand.className = "d-flex";
-                    brand.appendChild(appIndicator());
+                    brand.appendChild(infoSquare());
                     brand.append(Strings.ProjectName);
                     brand.querySelector("svg").classList.add("me-75");
                     props.brand = brand;
@@ -68,32 +69,33 @@ export class Datatable {
                     el.querySelector("nav div.container-fluid").classList.add("ps-3");
                     el.querySelector("nav div.container-fluid a.navbar-brand").classList.add("pe-none");
                 },
-                items: [
+                itemsEnd: [
                     {
-                        className: "",
-                        text: "Add an Icon",
+                        text: "Click to add a new icon",
                         onRender: (el, item) => {
                             // Clear the existing button
                             while (el.firstChild) { el.removeChild(el.firstChild); }
 
                             // Create a span to wrap the icon in
                             let span = document.createElement("span");
-                            span.className = "bg-white d-inline-flex ms-2 rounded";
+                            span.className = "bg-white d-inline-flex me-2 rounded";
                             el.appendChild(span);
 
                             // Render a tooltip
-                            Components.Tooltip({
+                            let btn = Components.Tooltip({
                                 el: span,
-                                content: "Click to add a new icon.",
+                                content: item.text,
+                                placement: Components.TooltipPlacements.Left,
+                                type: Components.TooltipTypes.LightBorder,
                                 btnProps: {
                                     // Render the icon button
-                                    className: "p-1 pe-2",
+                                    className: "icon-btn p-1 pe-2",
                                     iconClassName: "me-1",
                                     iconType: plusSquare,
                                     iconSize: 24,
                                     isSmall: true,
-                                    text: "Add",
-                                    type: Components.ButtonTypes.OutlineSecondary,
+                                    text: "New",
+                                    type: Components.ButtonTypes.Light,
                                     onClick: () => {
                                         // Show the new form
                                         Forms.new(this._ds, () => {
@@ -106,6 +108,7 @@ export class Datatable {
                                     }
                                 },
                             });
+                            btn.el.classList.remove("btn-icon");
                         }
                     }
                 ]
@@ -116,7 +119,7 @@ export class Datatable {
                     dom: 'rt<"row"<"col-sm-4"l><"col-sm-4"i><"col-sm-4"p>>',
                     columnDefs: [
                         {
-                            "targets": 6,
+                            "targets": [0, 6],
                             "orderable": false,
                             "searchable": false
                         }
@@ -126,12 +129,14 @@ export class Datatable {
                     },
                     drawCallback: function (settings) {
                         let api = new jQuery.fn.dataTable.Api(settings) as any;
-                        jQuery(api.context[0].nTable).removeClass('no-footer');
-                        jQuery(api.context[0].nTable).addClass('tbl-footer');
-                        jQuery(api.context[0].nTable).addClass('table-striped');
-                        jQuery(api.context[0].nTableWrapper).find('.dataTables_info').addClass('text-center');
-                        jQuery(api.context[0].nTableWrapper).find('.dataTables_length').addClass('pt-2');
-                        jQuery(api.context[0].nTableWrapper).find('.dataTables_paginate').addClass('pt-03');
+                        let div = api.table().container() as HTMLDivElement;
+                        let table = api.table().node() as HTMLTableElement;
+                        div.querySelector(".dataTables_info").classList.add("text-center");
+                        div.querySelector(".dataTables_length").classList.add("pt-2");
+                        div.querySelector(".dataTables_paginate").classList.add("pt-03");
+                        table.classList.remove("no-footer");
+                        table.classList.add("tbl-footer");
+                        table.classList.add("table-striped");
                     },
                     headerCallback: function (thead, data, start, end, display) {
                         jQuery('th', thead).addClass('align-middle');
@@ -142,7 +147,21 @@ export class Datatable {
                 columns: [
                     {
                         name: "LinkIcon",
-                        title: "Icon"
+                        title: "Icon",
+                        onRenderCell: (el, col, item: ILinkItem) => {
+                            let svgIcon = el.querySelector("svg");
+                            if (svgIcon) {
+                                // Get the path element
+                                let elSvgPath = svgIcon.querySelector("path");
+                                if (elSvgPath) {
+                                    // Clear the color
+                                    elSvgPath.removeAttribute("fill");
+                                }
+                                svgIcon.style.fill = "#212529";
+                                svgIcon.style.height = "32px";
+                                svgIcon.style.width = "32px";
+                            }
+                        }
                     },
                     {
                         name: "LinkOrder",
@@ -162,20 +181,38 @@ export class Datatable {
                     },
                     {
                         name: "OpenInNewTab",
-                        title: "Open in New Tab?"
+                        title: "Open In New Tab?",
+                        onRenderHeader: (el) => {
+                            el.classList.add("text-nowrap");
+                        },
+                        onRenderCell: (el, col, item: ILinkItem) => {
+                            el.innerHTML = item.OpenInNewTab ? "Yes" : "No";
+                        }
                     },
                     {
-                        name: "",
-                        title: "",
+                        name: "Edit",
+                        isHidden: true,
                         onRenderCell: (el, col, item: ILinkItem) => {
-                            // Render the edit button
-                            Components.Tooltip({
-                                el,
-                                content: "Click to edit the item.",
+                            // Create a span to wrap the icons in
+                            let span = document.createElement("span");
+                            span.className = "bg-white d-inline-flex ms-2 rounded text-nowrap";
+                            el.appendChild(span);
+
+                            // Render a tooltip
+                            let btn = Components.Tooltip({
+                                el: span,
+                                content: col.name + " this icon",
+                                placement: Components.TooltipPlacements.Left,
+                                type: Components.TooltipTypes.LightBorder,
                                 btnProps: {
+                                    // Render the icon button
+                                    className: "icon-btn p-1",
+                                    iconClassName: "me-1",
+                                    iconType: pencilSquare,
+                                    iconSize: 24,
                                     isSmall: true,
-                                    text: "Edit",
-                                    type: Components.ButtonTypes.OutlineSuccess,
+                                    text: col.name,
+                                    type: Components.ButtonTypes.OutlineSecondary,
                                     onClick: () => {
                                         // Show the edit form
                                         Forms.edit(item.Id, this._ds, () => {
@@ -188,6 +225,7 @@ export class Datatable {
                                     }
                                 }
                             });
+                            btn.el.classList.remove("btn-icon");
                         }
                     }
                 ]

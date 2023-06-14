@@ -23,6 +23,7 @@ const GlobalVariable = {
             // See if the list name is set
             if (listName) {
                 // Update the configuration
+                Strings.Lists.IconLinks = listName;
                 Configuration._configuration.ListCfg[0].ListInformation.Title = listName;
             }
         }

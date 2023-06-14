@@ -6,8 +6,51 @@
     --sp-btn-text: #fff;
 }
 
-.bs .bg-sharepoint {
-    background-color: var(--sp-btn-bg) !important;
+.bs {
+    .bg-sharepoint {
+        background-color: var(--sp-btn-bg) !important;
+    }
+    .bg-primary {
+        background-color: rgba(var(--sp-btn-bg), var(--bs-bg-opacity)) !important;
+    }
+    .dropdown-item.active, .dropdown-item:active {
+        background-color: var(--sp-btn-bg);
+    }
+    .form-check-input:checked {
+        background-color: var(--sp-btn-bg);
+        border-color: var(--sp-btn-bg);
+    }
+    .form-check-input:focus {
+        background-color: var(--sp-btn-bg-active);
+        border-color: var(--sp-btn-bg-active);
+    }
+    .nav-link, .page-link {
+        color: var(--sp-btn-bg);
+    }
+    .btn-outline-primary {
+        border-color: var(--sp-btn-bg);
+        color: var(--sp-btn-bg);
+    }
+    .btn-outline-primary:hover {
+        background-color: var(--sp-btn-bg-hover);
+        border-color: var(--sp-btn-bg-hover);
+    }
+    .btn-check:checked+.btn, :not(.btn-check)+.btn:active, .btn:first-child:active, .btn.active, .btn.show {
+        background-color: var(--sp-btn-bg-active);
+        border-color: var(--sp-btn-bg-active);
+        color: var(--sp-btn-text);
+    }
+    .btn-outline-primary:active, .list-group-item.active, .nav-tabs .nav-link.active, .nav-tabs .nav-link:focus, .page-link:focus {
+        background-color: var(--sp-btn-bg-active);
+        border-color: var(--sp-btn-bg-active);
+    }
+    .btn-primary, .nav-tabs .show>.nav-link {
+        background-color: var(--sp-btn-bg);
+        border-color: var(--sp-btn-bg);
+    }
+    .form-range::-webkit-slider-thumb {
+        background-color: var(--sp-btn-bg);
+    }
 }
 
 /** Edit Links Button SVG */

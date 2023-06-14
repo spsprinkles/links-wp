@@ -1,5 +1,5 @@
 import { Components, ContextInfo, Helper, SPTypes } from "gd-sprest-bs";
-import { link45deg } from "gd-sprest-bs/build/icons/svgs/link45deg";
+import { infoSquare } from "gd-sprest-bs/build/icons/svgs/infoSquare";
 import { Datatable } from "./datatable";
 import { DataSource } from "./ds";
 import { Link } from "./link";
@@ -84,36 +84,22 @@ export class App {
 
     // Render the edit information
     private renderEdit() {
-        // Render a link to the list
+        // Render a view button
         let btn = Components.Button({
             el: this._el,
-            className: "links-list ms-1 my-1",
+            className: "ms-1 my-1",
+            iconClassName: "edit-btn-img",
             iconSize: 22,
-            iconType: link45deg,
+            iconType: infoSquare,
             isSmall: true,
-            text: "Links List",
-            type: Components.ButtonTypes.OutlinePrimary,
-            onClick: () => {
-                // Open the link in a new window
-                window.open(this._ds.LinksList.ListUrl, "_blank");
-            }
-        });
-        btn.el.classList.remove("btn-icon");
-
-        // Render a view button
-        Components.Button({
-            el: this._el,
-            className: "links-list ms-1 my-1",
-            iconSize: 22,
-            iconType: link45deg,
-            isSmall: true,
-            text: "View Icons",
+            text: "Edit Links",
             type: Components.ButtonTypes.OutlineSecondary,
             onClick: () => {
                 // Show the datatable
                 this._dt.show();
             }
-        })
+        });
+        btn.el.classList.remove("btn-icon");
     }
 
     // Shows the datatable

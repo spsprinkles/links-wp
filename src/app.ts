@@ -93,7 +93,7 @@ export class App {
         let btn = Components.Button({
             el: this._el,
             className: "ms-1 my-1",
-            iconClassName: "edit-btn-img",
+            iconClassName: "btn-img",
             iconSize: 22,
             iconType: infoSquare,
             isSmall: true,

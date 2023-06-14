@@ -21,7 +21,7 @@ const Strings = {
     Lists: {
         IconLinks: "Icon Links"
     },
-    ProjectName: "Links WebPart",
+    ProjectName: "Icon Links",
     ProjectDescription: "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites.",
     SourceUrl: ContextInfo.webServerRelativeUrl,
     Version: "0.0.3"

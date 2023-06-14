@@ -71,7 +71,7 @@ export class Datatable {
                 },
                 itemsEnd: [
                     {
-                        text: "Click to add a new icon",
+                        text: "Add a new icon link",
                         onRender: (el, item) => {
                             // Clear the existing button
                             while (el.firstChild) { el.removeChild(el.firstChild); }
@@ -190,8 +190,9 @@ export class Datatable {
                         }
                     },
                     {
-                        name: "Edit",
+                        className: "text-end",
                         isHidden: true,
+                        name: "Edit",
                         onRenderCell: (el, col, item: ILinkItem) => {
                             // Create a span to wrap the icons in
                             let span = document.createElement("span");
@@ -201,7 +202,7 @@ export class Datatable {
                             // Render a tooltip
                             let btn = Components.Tooltip({
                                 el: span,
-                                content: col.name + " this icon",
+                                content: col.name + " icon link",
                                 placement: Components.TooltipPlacements.Left,
                                 type: Components.TooltipTypes.LightBorder,
                                 btnProps: {

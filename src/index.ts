@@ -1,3 +1,4 @@
+import { LoadingDialog } from "dattatable";
 import { Components, ContextInfo } from "gd-sprest-bs";
 import { infoSquare } from "gd-sprest-bs/build/icons/svgs/infoSquare";
 import { App } from "./app";
@@ -62,6 +63,11 @@ const GlobalVariable = {
                         // Disable the button
                         btn.disable();
 
+                        // Show a loading dialog
+                        LoadingDialog.setHeader("Creating the List");
+                        LoadingDialog.setBody("This dialog will close after the list is created...");
+                        LoadingDialog.show();
+
                         // Install the solution
                         Configuration.install().then(() => {
                             // Set the flag
@@ -72,6 +78,9 @@ const GlobalVariable = {
 
                             // Enable the button
                             btn.enable();
+
+                            // Hide the dialog
+                            LoadingDialog.hide();
                         });
                     }
                 });

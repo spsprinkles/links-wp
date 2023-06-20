@@ -1,7 +1,7 @@
 {
   "name": "icon-links",
   "version": "0.0.3",
-  "description": "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites.",
+  "description": "This is similar to Quick links but saves the data in a SharePoint list. You can use the links across multiple pages & sites without having to recreate them.",
   "main": "src/index.ts",
   "scripts": {
     "all": "npm run build && npm run prod && npm run spfx",

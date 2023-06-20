@@ -17,10 +17,10 @@
     },
     "metadata": {
       "shortDescription": {
-        "default": "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites."
+        "default": "This is similar to Quick links but saves the data in a SharePoint list. You can use the links across multiple pages & sites without having to recreate them."
       },
       "longDescription": {
-        "default": "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites."
+        "default": "This is similar to Quick links but saves the data in a SharePoint list. You can use the links across multiple pages & sites without having to recreate them."
       },
       "screenshotPaths": [],
       "videoUrl": "",

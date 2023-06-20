@@ -22,7 +22,7 @@ const Strings = {
         IconLinks: "Icon Links"
     },
     ProjectName: "Icon Links",
-    ProjectDescription: "Similar to the quick links, but stores the data in a single list so you can reuse the same links across multiple pages/sites.",
+    ProjectDescription: "This is similar to Quick links but saves the data in a SharePoint list. You can use the links across multiple pages & sites without having to recreate them.",
     SourceUrl: ContextInfo.webServerRelativeUrl,
     Version: "0.0.3"
 };

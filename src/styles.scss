@@ -177,9 +177,15 @@
     }
 }
 
-/* Align version to the right in the Settings Panel */
-div.spPropertyPaneContainer div[aria-label='Icon Links property pane'] div[data-automation-id='propertyPaneGroupContent']>div:last-child label {
-    text-align: right;
+/* Apply changes to the Settings Panel */
+div.spPropertyPaneContainer div[aria-label='Icon Links property pane'] div[data-automation-id='propertyPaneGroupContent'] {
+    >div:first-child div[role="radiogroup"] div.ms-ChoiceFieldGroup-flexContainer div.ms-ChoiceField-labelWrapper span.ms-Label {
+        overflow: initial;
+    }
+    /* Align version to the right */
+    >div:last-child label {
+        text-align: right;
+    }
 }
 
 /* OffCanvas Visiblity */

@@ -1,11 +1,12 @@
 import { DisplayMode, Environment, Version } from '@microsoft/sp-core-library';
-import { IPropertyPaneConfiguration, PropertyPaneButton, PropertyPaneDropdown, PropertyPaneHorizontalRule, PropertyPaneLabel, PropertyPaneTextField } from '@microsoft/sp-property-pane';
+import { PropertyPaneButton, PropertyPaneChoiceGroup, IPropertyPaneConfiguration, PropertyPaneDropdown, PropertyPaneHorizontalRule, PropertyPaneLabel, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
 import * as strings from 'IconLinksWebPartStrings';
 
 export interface IIconLinksWebPartProps {
   justify: string;
+  layout: string;
   listName: string;
   viewName: string;
   webUrl: string;
@@ -15,7 +16,7 @@ export interface IIconLinksWebPartProps {
 import "../../../../dist/icon-links.js";
 declare const IconLinks: {
   description: string;
-  render: new (el: HTMLElement, context: WebPartContext, envType: number, displayMode: DisplayMode, justify: string, viewName: string, listName: string, sourceUrl: string) => void;
+  render: new (el: HTMLElement, context: WebPartContext, envType: number, displayMode: DisplayMode, layout: string, justify: string, viewName: string, listName: string, sourceUrl: string) => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
   version: string;
   viewList: () => void;
@@ -31,8 +32,15 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
       while (this.domElement.firstChild) { this.domElement.removeChild(this.domElement.firstChild); }
     }
 
+    // Set the default property values
+    if (!this.properties.justify) { this.properties.justify = strings.JustifyFieldValue; }
+    if (!this.properties.listName) { this.properties.listName = strings.ListNameFieldValue; }
+    if (!this.properties.layout) { this.properties.layout = strings.LayoutFieldValue; }
+    if (!this.properties.viewName) { this.properties.viewName = strings.ViewNameFieldValue; }
+    if (!this.properties.webUrl) { this.properties.webUrl = this.context.pageContext.web.serverRelativeUrl; }
+    
     // Render the solution
-    new IconLinks.render(this.domElement, this.context, Environment.type, this.displayMode, this.properties.justify, this.properties.viewName, this.properties.listName, this.properties.webUrl);
+    new IconLinks.render(this.domElement, this.context, Environment.type, this.displayMode, this.properties.layout, this.properties.justify, this.properties.viewName, this.properties.listName, this.properties.webUrl);
 
     // Set the flag
     this._hasRendered = true;
@@ -58,6 +66,23 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
           groups: [
             {
               groupFields: [
+                PropertyPaneChoiceGroup('layout', {
+                  label: strings.LayoutFieldLabel,
+                  options: [
+                    {
+                      key: 'icon-sqre',
+                      text: 'Square',
+                      iconProps: { officeFabricIconFontName: 'squareshape' }
+                    },
+                    {
+                      key: 'icon-rect',
+                      text: 'Rectangle',
+                      imageSize: { height: 32, width: 32 },
+                      imageSrc: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBzdHlsZT0ic3Ryb2tlOiAjMjQyNDI0OyIgeD0iMSIgeT0iMSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjEyIiByeD0iMiIgc3Ryb2tlLXdpZHRoPSIyIj48L3JlY3Q+PC9zdmc+',
+                      selectedImageSrc: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCBzdHlsZT0ic3Ryb2tlOiAjMjQyNDI0OyIgeD0iMSIgeT0iMSIgd2lkdGg9IjMwIiBoZWlnaHQ9IjEyIiByeD0iMiIgc3Ryb2tlLXdpZHRoPSIyIj48L3JlY3Q+PC9zdmc+'
+                    }
+                  ]
+                }),
                 PropertyPaneDropdown('justify', {
                   label: strings.JustifyFieldLabel,
                   selectedKey: 'justify-content-start',

@@ -13,7 +13,7 @@ const GlobalVariable = {
     App: null,
     Configuration,
     description: Strings.ProjectDescription,
-    render: (el: HTMLElement, context?, envType?: number, displayMode?: number, justify?: string, viewName?: string, listName?: string, sourceUrl?: string) => {
+    render: (el: HTMLElement, context?, envType?: number, displayMode?: number, layout?: string, justify?: string, viewName?: string, listName?: string, sourceUrl?: string) => {
         // See if the page context exists
         if (context) {
             // Set the context
@@ -36,7 +36,7 @@ const GlobalVariable = {
             // Success
             () => {
                 // Create the application
-                GlobalVariable.App = new App(el, ds, displayMode, justify);
+                GlobalVariable.App = new App(el, ds, displayMode, layout, justify);
             },
 
             // Error

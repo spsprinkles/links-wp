@@ -6,13 +6,13 @@ import { ILinkItem } from "./ds";
  */
 export class Link {
     // Constructor
-    constructor(el: HTMLElement, link: ILinkItem) {
+    constructor(el: HTMLElement, link: ILinkItem, layout?: string) {
         // Render the link
-        this.render(el, link);
+        this.render(el, link, layout);
     }
 
     // Generates the base html
-    private generateElement(link: ILinkItem) {
+    private generateElement(link: ILinkItem, layout?: string) {
         let el: HTMLElement = null;
 
         // Read the icon
@@ -48,9 +48,9 @@ export class Link {
             el = document.createElement("div");
             el.innerHTML = html;
             
-            // Add square icon class
-            el.querySelector("a").classList.add("icon-sqre");
-
+            // Add icon layout class or default to the square icon
+            layout ? el.querySelector("a").classList.add(layout) : el.querySelector("a").classList.add("icon-sqre");
+            
             // See if a tooltip exists
             let elCol = el.querySelector(".col");
             if (link.LinkTooltip) {
@@ -71,9 +71,9 @@ export class Link {
     }
 
     // Renders the link
-    private render(el: HTMLElement, link: ILinkItem) {
+    private render(el: HTMLElement, link: ILinkItem, layout?: string) {
         // Generate the element
-        let elLink = this.generateElement(link);
+        let elLink = this.generateElement(link, layout);
         if (elLink) {
             el.appendChild(elLink);
         }

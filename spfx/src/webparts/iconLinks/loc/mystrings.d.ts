@@ -1,12 +1,14 @@
 declare interface IIconLinksWebPartStrings {
-  BasicGroupName: string;
   JustifyFieldLabel: string;
+  JustifyFieldValue: string;
+  LayoutFieldLabel: string;
+  LayoutFieldValue: string;
   ListNameFieldDescription: string;
   ListNameFieldLabel: string;
-  ViewListFieldDescription: string;
-  ViewListFieldLabel: string;
+  ListNameFieldValue: string;
   ViewNameFieldDescription: string;
   ViewNameFieldLabel: string;
+  ViewNameFieldValue: string;
   WebUrlFieldDescription: string;
   WebUrlFieldLabel: string;
   AppLocalEnvironmentSharePoint: string;

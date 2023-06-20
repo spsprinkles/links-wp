@@ -14,13 +14,13 @@ export class App {
     private _el: HTMLElement = null;
 
     // Constructor
-    constructor(el: HTMLElement, ds: DataSource, displayMode: number, justify: string) {
+    constructor(el: HTMLElement, ds: DataSource, displayMode: number, layout: string, justify: string) {
         // Save the properties
         this._ds = ds;
         this._el = el;
 
         // Render the component
-        this.render(displayMode, justify);
+        this.render(displayMode, layout, justify);
     }
 
     // Returns true if the page is in edit mode
@@ -36,7 +36,7 @@ export class App {
     }
 
     // Renders the component
-    private render(displayMode: number, justify: string) {
+    private render(displayMode: number, layout: string, justify: string) {
         // See if we are editing the page
         if (this.isInEditMode(displayMode)) {
             // Create the datatable if it doesn't exist
@@ -45,7 +45,7 @@ export class App {
                 while (this._el.firstChild) { this._el.removeChild(this._el.firstChild); }
 
                 // Render the component
-                this.render(displayMode, justify);
+                this.render(displayMode, layout, justify);
             });
 
             // See if we are in classic mode
@@ -66,7 +66,7 @@ export class App {
             this._el.appendChild(elWP);
 
             // Render the dashboard
-            this.renderIcons(elWP);
+            this.renderIcons(elWP, layout);
 
             // Update the theme
             this.updateTheme();
@@ -79,11 +79,11 @@ export class App {
     }
 
     // Renders the icons
-    private renderIcons(el: HTMLElement) {
+    private renderIcons(el: HTMLElement, layout?: string) {
         // Parse the links
         for (let i = 0; i < this._ds.LinksList.Items.length; i++) {
             // Render the link
-            new Link(el, this._ds.LinksList.Items[i]);
+            new Link(el, this._ds.LinksList.Items[i], layout);
         }
     }
 

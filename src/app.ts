@@ -116,16 +116,24 @@ export class App {
     // Updates the styling, based on the theme
     updateTheme(themeInfo?: any) {
         // Get the theme colors
-        let bgColor = (themeInfo || ContextInfo.theme).primaryButtonBackground || this._ds.getThemeColor("NavigationSelectedBackground");
-        let bgHover = (themeInfo || ContextInfo.theme).primaryButtonBackgroundHovered || this._ds.getThemeColor("NavigationHoverBackground");
-        let bgActive = (themeInfo || ContextInfo.theme).primaryButtonBackgroundPressed || this._ds.getThemeColor("NavigationPressed");
-        let textColor = (themeInfo || ContextInfo.theme).primaryButtonText || this._ds.getThemeColor("Navigation");
+        let neutralDark = (themeInfo || ContextInfo.theme).neutralDark || this._ds.getThemeColor("StrongBodyText");
+        let neutralLight = (themeInfo || ContextInfo.theme).neutralLight || this._ds.getThemeColor("DisabledLines");
+        let neutralTertiary = (themeInfo || ContextInfo.theme).neutralTertiary || this._ds.getThemeColor("ButtonBorder");
+        let primaryButtonText = (themeInfo || ContextInfo.theme).primaryButtonText || this._ds.getThemeColor("TileText");
+        let themeDark = (themeInfo || ContextInfo.theme).themeDark || this._ds.getThemeColor("EmphasisBorder");
+        let themeDarker = (themeInfo || ContextInfo.theme).themeDarker || this._ds.getThemeColor("EmphasisHoverBorder");
+        let themeDarkAlt = (themeInfo || ContextInfo.theme).themeDarkAlt || this._ds.getThemeColor("HoverBackground");
+        let themePrimary = (themeInfo || ContextInfo.theme).themePrimary || this._ds.getThemeColor("AccentText");
 
         // Set the CSS properties to the theme colors
         let root = document.querySelector(':root') as HTMLElement;
-        root.style.setProperty('--sp-btn-bg', bgColor);
-        root.style.setProperty('--sp-btn-bg-hover', bgHover);
-        root.style.setProperty('--sp-btn-bg-active', bgActive);
-        root.style.setProperty('--sp-btn-text', textColor);
+        root.style.setProperty('--sp-neutral-dark', neutralDark);
+        root.style.setProperty('--sp-neutral-light', neutralLight);
+        root.style.setProperty('--sp-neutral-tertiary', neutralTertiary);
+        root.style.setProperty('--sp-primary-button-text', primaryButtonText);
+        root.style.setProperty('--sp-theme-dark', themeDark);
+        root.style.setProperty('--sp-theme-darker', themeDarker);
+        root.style.setProperty('--sp-theme-dark-alt', themeDarkAlt);
+        root.style.setProperty('--sp-theme-primary', themePrimary);
     }
 }

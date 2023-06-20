@@ -71,6 +71,10 @@ export class Datatable {
                 onRendered: (el) => {
                     el.querySelector("nav div.container-fluid").classList.add("ps-3");
                     el.querySelector("nav div.container-fluid a.navbar-brand").classList.add("pe-none");
+                    el.querySelectorAll(".mb-2, .mb-lg-0").forEach(el => {
+                        el.classList.remove("mb-2");
+                        el.classList.remove("mb-lg-0");
+                    });
                 },
                 itemsEnd: [
                     {
@@ -92,7 +96,7 @@ export class Datatable {
                                 type: Components.TooltipTypes.LightBorder,
                                 btnProps: {
                                     // Render the icon button
-                                    className: "align-items-center d-flex icon-btn p-1 pe-2",
+                                    className: "align-items-center d-flex mw-0 p-1 pe-2",
                                     iconClassName: "me-1",
                                     iconType: plusSquare,
                                     iconSize: 24,
@@ -154,15 +158,19 @@ export class Datatable {
                         onRenderCell: (el, col, item: ILinkItem) => {
                             let svgIcon = el.querySelector("svg");
                             if (svgIcon) {
-                                // Get the path element
-                                let elSvgPath = svgIcon.querySelector("path");
-                                if (elSvgPath) {
+                                // Add icon datatable class
+                                svgIcon.classList.add("icon-dt");
+                                // Clear the container color
+                                svgIcon.removeAttribute("fill");
+                                // Clear the height
+                                svgIcon.removeAttribute("height");
+                                // Clear the width
+                                svgIcon.removeAttribute("width");
+                                // Get the path elements
+                                svgIcon.querySelectorAll("path").forEach(el => {
                                     // Clear the color
-                                    elSvgPath.removeAttribute("fill");
-                                }
-                                svgIcon.style.fill = "#212529";
-                                svgIcon.style.height = "32px";
-                                svgIcon.style.width = "32px";
+                                    el.removeAttribute("fill");
+                                });
                             }
                         }
                     },
@@ -210,7 +218,7 @@ export class Datatable {
                                 type: Components.TooltipTypes.LightBorder,
                                 btnProps: {
                                     // Render the icon button
-                                    className: "align-items-center d-flex icon-btn p-1",
+                                    className: "align-items-center d-flex mw-0 p-1",
                                     iconClassName: "me-1",
                                     iconType: pencilSquare,
                                     iconSize: 24,

@@ -159,15 +159,19 @@ export class Forms {
                             // Ensure a svg icon exists
                             let svgIcon = elIcon.querySelector("svg");
                             if (svgIcon) {
-                                // Get the path element
-                                let elSvgPath = svgIcon.querySelector("path");
-                                if (elSvgPath) {
+                                // Add icon datatable class
+                                svgIcon.classList.add("icon-dt");
+                                // Clear the container color
+                                svgIcon.removeAttribute("fill");
+                                // Clear the height
+                                svgIcon.removeAttribute("height");
+                                // Clear the width
+                                svgIcon.removeAttribute("width");
+                                // Get the path elements
+                                svgIcon.querySelectorAll("path").forEach(el => {
                                     // Clear the color
-                                    elSvgPath.removeAttribute("fill");
-                                }
-                                svgIcon.style.fill = "#212529";
-                                svgIcon.style.height = "32px";
-                                svgIcon.style.width = "32px";
+                                    el.removeAttribute("fill");
+                                });
                             }
                             ctrl.el.appendChild(elIcon);
                         }

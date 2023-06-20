@@ -22,26 +22,34 @@ export class Link {
         // Ensure a svg icon exists
         let svgIcon = elIcon.querySelector("svg");
         if (svgIcon) {
+            // Clear the container color
+            svgIcon.removeAttribute("fill");
+            // Clear the height
+            svgIcon.removeAttribute("height");
+            // Clear the width
+            svgIcon.removeAttribute("width");
             // Hide icon from assistive technologies
             svgIcon.setAttribute("aria-hidden", "true");
-            // Get the path element
-            let elSvgPath = svgIcon.querySelector("path");
-            if (elSvgPath) {
+            // Get the path elements
+            svgIcon.querySelectorAll("path").forEach(el => {
                 // Clear the color
-                elSvgPath.removeAttribute("fill");
-            }
+                el.removeAttribute("fill");
+            });
 
             // Generate the html
             let html = `<div class="col">
-                <a class="link-icon" href="${link.LinkUrl || "#"}" target="${link.OpenInNewTab ? "_blank" : "_self"}" aria-label="${link.LinkTooltip || link.Title}">
+                <a href="${link.LinkUrl || "#"}" aria-label="${link.LinkTooltip || link.Title}" target="${link.OpenInNewTab ? "_blank" : "_self"}">
                     ${svgIcon.outerHTML}
-                    <div class="link-text">${link.Title}</div>
+                    <div class="icon-text">${link.Title}</div>
                 </a>
             </div>`;
 
             // Create the element
             el = document.createElement("div");
             el.innerHTML = html;
+            
+            // Add square icon class
+            el.querySelector("a").classList.add("icon-sqre");
 
             // See if a tooltip exists
             let elCol = el.querySelector(".col");
@@ -51,6 +59,7 @@ export class Link {
                     content: link.LinkTooltip,
                     target: elCol,
                     options: {
+                        offset: [0, 5],
                         theme: "sharepoint"
                     }
                 })

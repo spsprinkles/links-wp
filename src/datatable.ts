@@ -50,7 +50,6 @@ export class Datatable {
         this._dashboard = new Dashboard({
             el: Modal.BodyElement,
             hideHeader: true,
-            hideFooter: true,
             useModal: false,
             navigation: {
                 searchPlaceholder: "Find an Icon",
@@ -117,6 +116,14 @@ export class Datatable {
                             });
                             btn.el.classList.remove("btn-icon");
                         }
+                    }
+                ]
+            },
+            footer: {
+                itemsEnd: [
+                    {
+                        className: "pe-none text-dark",
+                        text: "v" + Strings.Version,
                     }
                 ]
             },

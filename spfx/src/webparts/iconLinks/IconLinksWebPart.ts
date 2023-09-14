@@ -23,15 +23,7 @@ declare const IconLinks: {
 }
 
 export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWebPartProps> {
-  private _hasRendered: boolean = false;
-
   public render(): void {
-    // See if have rendered the solution
-    if (this._hasRendered) {
-      // Clear the element
-      while (this.domElement.firstChild) { this.domElement.removeChild(this.domElement.firstChild); }
-    }
-
     // Set the default property values
     if (!this.properties.justify) { this.properties.justify = strings.JustifyFieldValue; }
     if (!this.properties.listName) { this.properties.listName = strings.ListNameFieldValue; }
@@ -41,9 +33,6 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
     
     // Render the solution
     new IconLinks.render(this.domElement, this.context, Environment.type, this.displayMode, this.properties.layout, this.properties.justify, this.properties.viewName, this.properties.listName, this.properties.webUrl);
-
-    // Set the flag
-    this._hasRendered = true;
   }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {

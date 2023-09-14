@@ -15,6 +15,9 @@ const GlobalVariable = {
     Configuration,
     description: Strings.ProjectDescription,
     render: (el: HTMLElement, context?, envType?: number, displayMode?: number, layout?: string, justify?: string, viewName?: string, listName?: string, sourceUrl?: string) => {
+        // Clear the element
+        while (el.firstChild) { el.removeChild(el.firstChild); }
+
         // See if the page context exists
         if (context) {
             // Set the context

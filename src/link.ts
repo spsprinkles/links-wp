@@ -52,7 +52,7 @@ export class Link {
             layout ? el.querySelector("a").classList.add(layout) : el.querySelector("a").classList.add("icon-sqre");
             
             // See if a tooltip exists
-            let elCol = el.querySelector(".col");
+            let elCol = el.querySelector(".col") as HTMLElement;
             if (link.LinkTooltip) {
                 // Render the tooltip
                 Components.Tooltip({

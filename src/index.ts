@@ -4,48 +4,78 @@ import { infoSquare } from "gd-sprest-bs/build/icons/svgs/infoSquare";
 import { App } from "./app";
 import { Configuration } from "./cfg";
 import { DataSource } from "./ds";
+import { Log } from "./log";
 import Strings, { setContext } from "./strings";
 
 // Styling
 import "./styles.scss";
+
+// App Properties
+interface IAppProps {
+    el: HTMLElement;
+    context?: any;
+    envType?: number;
+    displayMode?: number;
+    layout?: string;
+    log?: any;
+    justify?: string;
+    viewName?: string;
+    listName?: string;
+    sourceUrl?: string;
+}
 
 // Create the global variable for this solution
 const GlobalVariable = {
     App: null,
     Configuration,
     description: Strings.ProjectDescription,
-    render: (el: HTMLElement, context?, envType?: number, displayMode?: number, layout?: string, justify?: string, viewName?: string, listName?: string, sourceUrl?: string) => {
+    render: (props: IAppProps) => {
         // Clear the element
-        while (el.firstChild) { el.removeChild(el.firstChild); }
+        while (props.el.firstChild) { props.el.removeChild(props.el.firstChild); }
 
         // See if the page context exists
-        if (context) {
+        if (props.context) {
             // Set the context
-            setContext(context, envType, sourceUrl);
+            setContext(props.context, props.envType, props.sourceUrl);
 
             // Update the configuration
-            Configuration.setWebUrl(sourceUrl || ContextInfo.webServerRelativeUrl);
+            Configuration.setWebUrl(props.sourceUrl || ContextInfo.webServerRelativeUrl);
 
             // See if the list name is set
-            if (listName) {
+            if (props.listName) {
                 // Update the configuration
-                Strings.Lists.IconLinks = listName;
-                Configuration._configuration.ListCfg[0].ListInformation.Title = listName;
+                Strings.Lists.IconLinks = props.listName;
+                Configuration._configuration.ListCfg[0].ListInformation.Title = props.listName;
+            }
+
+            // See if the log is set
+            if (props.log) {
+                // Initialize the log
+                Log.init(props.log, props.context.serviceScope);
             }
         }
 
+        // Log
+        Log.Information("Initializing the application.");
+
         // Initialize the data source
         let ds = new DataSource();
-        ds.init(viewName).then(
+        ds.init(props.viewName).then(
             // Success
             () => {
                 // See if the app exists
                 if (GlobalVariable.App) {
+                    // Log
+                    Log.Information("Refreshing the application.");
+
                     // Refresh the application
-                    GlobalVariable.App.refresh(displayMode, layout, justify);
+                    GlobalVariable.App.refresh(props.displayMode, props.layout, props.justify);
                 } else {
+                    // Log
+                    Log.Information("Creating the application.");
+
                     // Create the application
-                    GlobalVariable.App = new App(el, ds, displayMode, layout, justify);
+                    GlobalVariable.App = new App(props.el, ds, props.displayMode, props.layout, props.justify);
                 }
             },
 
@@ -55,7 +85,7 @@ const GlobalVariable = {
 
                 // Render a button to install the solution
                 let btn = Components.Button({
-                    el,
+                    el: props.el,
                     className: "ms-1 my-1",
                     iconClassName: "btn-img",
                     iconSize: 22,
@@ -113,5 +143,5 @@ window[Strings.GlobalVariable] = GlobalVariable;
 let elApp = document.querySelector("#" + Strings.AppElementId) as HTMLElement;
 if (elApp) {
     // Render the application
-    new GlobalVariable.render(elApp);
+    new GlobalVariable.render({ el: elApp });
 }

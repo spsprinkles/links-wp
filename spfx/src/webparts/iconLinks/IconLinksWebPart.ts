@@ -1,4 +1,4 @@
-import { DisplayMode, Environment, Version } from '@microsoft/sp-core-library';
+import { DisplayMode, Environment, Log, Version } from '@microsoft/sp-core-library';
 import { PropertyPaneButton, PropertyPaneChoiceGroup, IPropertyPaneConfiguration, PropertyPaneDropdown, PropertyPaneHorizontalRule, PropertyPaneLabel, PropertyPaneTextField } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart, WebPartContext } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme, ISemanticColors } from '@microsoft/sp-component-base';
@@ -12,11 +12,25 @@ export interface IIconLinksWebPartProps {
   webUrl: string;
 }
 
+// App Properties
+interface IAppProps {
+  el: HTMLElement;
+  context?: WebPartContext;
+  envType?: number;
+  displayMode?: DisplayMode;
+  layout?: string;
+  log?: Log;
+  justify?: string;
+  viewName?: string;
+  listName?: string;
+  sourceUrl?: string;
+}
+
 // Import the solution
 import "../../../../dist/icon-links.js";
 declare const IconLinks: {
   description: string;
-  render: new (el: HTMLElement, context: WebPartContext, envType: number, displayMode: DisplayMode, layout: string, justify: string, viewName: string, listName: string, sourceUrl: string) => void;
+  render: new (props: IAppProps) => void;
   updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
   version: string;
   viewList: () => void;
@@ -30,9 +44,20 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
     if (!this.properties.layout) { this.properties.layout = strings.LayoutFieldValue; }
     if (!this.properties.viewName) { this.properties.viewName = strings.ViewNameFieldValue; }
     if (!this.properties.webUrl) { this.properties.webUrl = this.context.pageContext.web.serverRelativeUrl; }
-    
+
     // Render the solution
-    new IconLinks.render(this.domElement, this.context, Environment.type, this.displayMode, this.properties.layout, this.properties.justify, this.properties.viewName, this.properties.listName, this.properties.webUrl);
+    new IconLinks.render({
+      context: this.context,
+      el: this.domElement,
+      envType: Environment.type,
+      displayMode: this.displayMode,
+      justify: this.properties.justify,
+      layout: this.properties.layout,
+      listName: this.properties.listName,
+      log: Log,
+      viewName: this.properties.viewName,
+      sourceUrl: this.properties.webUrl
+    });
   }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {

@@ -3,6 +3,7 @@ import { infoSquare } from "gd-sprest-bs/build/icons/svgs/infoSquare";
 import { Datatable } from "./datatable";
 import { DataSource } from "./ds";
 import { Link } from "./link";
+import { Log } from "./log";
 import Strings from "./strings";
 
 /**
@@ -46,20 +47,32 @@ export class App {
 
     // Renders the component
     private render(displayMode: number, layout: string, justify: string) {
+        // Log
+        Log.Information("Loading the data for this application.");
+
         // Create the datatable if it doesn't exist
         this._dt = this._dt || new Datatable(this._ds, () => {
+            // Log
+            Log.Information("Data loaded for the application.");
+
             // Render the component
             this.render(displayMode, layout, justify);
         });
 
         // See if we are editing the page & in classic mode
         if (this.isInEditMode(displayMode) && (Strings.IsClassic)) {
+            // Log
+            Log.Information("Page in edit mode or is a classic page type.");
+
             // Render the edit button
             this.renderEdit();
         }
 
         // Ensure links exist
         if (this._ds.LinksList.Items.length > 0) {
+            // Log
+            Log.Information(`${this._ds.LinksList.Items.length} items returned from the query.`);
+
             // Create the main element
             let elWP = document.createElement("div");
             elWP.classList.add("d-flex");
@@ -74,6 +87,7 @@ export class App {
             // Update the theme
             this.updateTheme();
         } else {
+            // See if we are not in classic mode
             if (!Strings.IsClassic) {
                 // Render the edit button
                 this.renderEdit();
@@ -118,6 +132,9 @@ export class App {
 
     // Updates the styling, based on the theme
     updateTheme(themeInfo?: any) {
+        // Log
+        Log.Information("Updating the theme.");
+
         // Get the theme colors
         let neutralDark = (themeInfo || ContextInfo.theme).neutralDark || this._ds.getThemeColor("StrongBodyText");
         let neutralLight = (themeInfo || ContextInfo.theme).neutralLight || this._ds.getThemeColor("DisabledLines");

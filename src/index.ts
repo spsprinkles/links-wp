@@ -39,8 +39,14 @@ const GlobalVariable = {
         ds.init(viewName).then(
             // Success
             () => {
-                // Create the application
-                GlobalVariable.App = new App(el, ds, displayMode, layout, justify);
+                // See if the app exists
+                if (GlobalVariable.App) {
+                    // Refresh the application
+                    GlobalVariable.App.refresh(displayMode, layout, justify);
+                } else {
+                    // Create the application
+                    GlobalVariable.App = new App(el, ds, displayMode, layout, justify);
+                }
             },
 
             // Error

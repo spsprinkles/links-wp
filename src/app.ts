@@ -35,17 +35,23 @@ export class App {
         }
     }
 
+    // Refreshes the application
+    refresh(displayMode: number, layout: string, justify: string) {
+        // Clear the element
+        while (this._el.firstChild) { this._el.removeChild(this._el.firstChild); }
+
+        // Render the component
+        this.render(displayMode, layout, justify);
+    }
+
     // Renders the component
     private render(displayMode: number, layout: string, justify: string) {
         // Create the datatable if it doesn't exist
         this._dt = this._dt || new Datatable(this._ds, () => {
-            // Clear the element
-            while (this._el.firstChild) { this._el.removeChild(this._el.firstChild); }
-
             // Render the component
             this.render(displayMode, layout, justify);
         });
-        
+
         // See if we are editing the page & in classic mode
         if (this.isInEditMode(displayMode) && (Strings.IsClassic)) {
             // Render the edit button

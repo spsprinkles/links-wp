@@ -26,13 +26,9 @@ interface IAppProps {
 
 // Create the global variable for this solution
 const GlobalVariable = {
-    App: null,
     Configuration,
     description: Strings.ProjectDescription,
-    render: (props: IAppProps) => {
-        // Clear the element
-        while (props.el.firstChild) { props.el.removeChild(props.el.firstChild); }
-
+    init: (props: IAppProps) => {
         // See if the page context exists
         if (props.context) {
             // Set the context
@@ -58,25 +54,19 @@ const GlobalVariable = {
         // Log
         Log.Information("Initializing the application.");
 
-        // Initialize the data source
+        // Create the application
         let ds = new DataSource();
+        let app = new App(props.el, ds);
+
+        // Initialize the data source
         ds.init(props.viewName).then(
             // Success
             () => {
-                // See if the app exists
-                if (GlobalVariable.App) {
-                    // Log
-                    Log.Information("Refreshing the application.");
+                // Log
+                Log.Information("Creating the application.");
 
-                    // Refresh the application
-                    GlobalVariable.App.refresh(props.displayMode, props.layout, props.justify);
-                } else {
-                    // Log
-                    Log.Information("Creating the application.");
-
-                    // Create the application
-                    GlobalVariable.App = new App(props.el, ds, props.displayMode, props.layout, props.justify);
-                }
+                // Render the application
+                app.render(props.displayMode, props.layout, props.justify);
             },
 
             // Error
@@ -126,14 +116,11 @@ const GlobalVariable = {
                 btn.el.classList.remove("btn-icon");
             }
         );
+
+        // Return the application
+        return app;
     },
-    updateTheme: (themeInfo) => {
-        GlobalVariable.App ? GlobalVariable.App.updateTheme(themeInfo) : null;
-    },
-    version: Strings.Version,
-    viewList: () => {
-        GlobalVariable.App ? GlobalVariable.App.showDatatable() : null;
-    }
+    version: Strings.Version
 };
 
 // Make is available in the DOM
@@ -143,5 +130,5 @@ window[Strings.GlobalVariable] = GlobalVariable;
 let elApp = document.querySelector("#" + Strings.AppElementId) as HTMLElement;
 if (elApp) {
     // Render the application
-    new GlobalVariable.render({ el: elApp });
+    GlobalVariable.init({ el: elApp });
 }

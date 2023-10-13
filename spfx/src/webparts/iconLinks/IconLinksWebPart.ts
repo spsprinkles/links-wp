@@ -12,6 +12,13 @@ export interface IIconLinksWebPartProps {
   webUrl: string;
 }
 
+// App
+interface IApp {
+  refresh: (displayMode: number, layout: string, justify: string) => void;
+  showDatatable: () => void;
+  updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
+}
+
 // App Properties
 interface IAppProps {
   el: HTMLElement;
@@ -30,13 +37,13 @@ interface IAppProps {
 import "../../../../dist/icon-links.js";
 declare const IconLinks: {
   description: string;
-  render: new (props: IAppProps) => void;
-  updateTheme: (currentTheme: Partial<ISemanticColors>) => void;
+  init: (props: IAppProps) => IApp;
   version: string;
-  viewList: () => void;
 }
 
 export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWebPartProps> {
+  private _app: IApp = null;
+
   public render(): void {
     // Set the default property values
     if (!this.properties.justify) { this.properties.justify = strings.JustifyFieldValue; }
@@ -45,8 +52,8 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
     if (!this.properties.viewName) { this.properties.viewName = strings.ViewNameFieldValue; }
     if (!this.properties.webUrl) { this.properties.webUrl = this.context.pageContext.web.serverRelativeUrl; }
 
-    // Render the solution
-    new IconLinks.render({
+    // Set the app props
+    const appProps: IAppProps = {
       context: this.context,
       el: this.domElement,
       envType: Environment.type,
@@ -57,7 +64,16 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
       log: Log,
       viewName: this.properties.viewName,
       sourceUrl: this.properties.webUrl
-    });
+    };
+
+    // See if the app has been rendered
+    if (this._app) {
+      // Refresh the solution
+      this._app.refresh(appProps.displayMode, appProps.layout, appProps.justify);
+    } else {
+      // Initialize the solution
+      this._app = IconLinks.init(appProps);
+    }
   }
 
   protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
@@ -66,7 +82,7 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
     }
 
     // Update the theme
-    IconLinks.updateTheme(currentTheme.semanticColors);
+    this._app.updateTheme(currentTheme.semanticColors);
   }
 
   protected get dataVersion(): Version {
@@ -125,7 +141,7 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
                   text: "Edit Icon Links",
                   onClick: () => {
                     // Show the list
-                    IconLinks.viewList();
+                    this._app.showDatatable();
                   }
                 }),
                 PropertyPaneLabel('version', {

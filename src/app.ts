@@ -15,13 +15,10 @@ export class App {
     private _el: HTMLElement = null;
 
     // Constructor
-    constructor(el: HTMLElement, ds: DataSource, displayMode: number, layout: string, justify: string) {
+    constructor(el: HTMLElement, ds: DataSource) {
         // Save the properties
         this._ds = ds;
         this._el = el;
-
-        // Render the component
-        this.render(displayMode, layout, justify);
     }
 
     // Returns true if the page is in edit mode
@@ -38,17 +35,17 @@ export class App {
 
     // Refreshes the application
     refresh(displayMode: number, layout: string, justify: string) {
-        // Clear the element
-        while (this._el.firstChild) { this._el.removeChild(this._el.firstChild); }
-
         // Render the component
         this.render(displayMode, layout, justify);
     }
 
     // Renders the component
-    private render(displayMode: number, layout: string, justify: string) {
+    render(displayMode: number, layout: string, justify: string) {
         // Log
         Log.Information("Loading the data for this application.");
+
+        // Clear the element
+        while (this._el.firstChild) { this._el.removeChild(this._el.firstChild); }
 
         // Create the datatable if it doesn't exist
         this._dt = this._dt || new Datatable(this._ds, () => {

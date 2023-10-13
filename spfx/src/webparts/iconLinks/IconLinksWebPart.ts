@@ -43,6 +43,7 @@ declare const IconLinks: {
 
 export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWebPartProps> {
   private _app: IApp = null;
+  private _currentTheme: IReadonlyTheme;
 
   public render(): void {
     // Set the default property values
@@ -73,6 +74,9 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
     } else {
       // Initialize the solution
       this._app = IconLinks.init(appProps);
+
+      // Update the theme
+      this._app.updateTheme(this._currentTheme.semanticColors);
     }
   }
 
@@ -81,8 +85,14 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
       return;
     }
 
-    // Update the theme
-    this._app.updateTheme(currentTheme.semanticColors);
+    // Set the theme
+    this._currentTheme = currentTheme;
+
+    // See if the app exists
+    if (this._app) {
+      // Update the theme
+      this._app.updateTheme(currentTheme.semanticColors);
+    }
   }
 
   protected get dataVersion(): Version {

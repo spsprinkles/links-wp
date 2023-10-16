@@ -75,8 +75,11 @@ export default class IconLinksWebPart extends BaseClientSideWebPart<IIconLinksWe
       // Initialize the solution
       this._app = IconLinks.init(appProps);
 
-      // Update the theme
-      this._app.updateTheme(this._currentTheme.semanticColors);
+      // See if the current theme exists
+      if (this._currentTheme) {
+        // Update the theme
+        this._app.updateTheme(this._currentTheme.semanticColors);
+      }
     }
   }
 

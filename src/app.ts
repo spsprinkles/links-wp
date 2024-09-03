@@ -19,6 +19,9 @@ export class App {
         // Save the properties
         this._ds = ds;
         this._el = el;
+
+        // Set the class name
+        this._el.classList.add("icon-links");
     }
 
     // Returns true if the page is in edit mode

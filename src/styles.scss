@@ -11,169 +11,208 @@
     --sp-theme-primary: #0078d4;
 }
 
-.bs {
-    .bg-sharepoint {
-        background-color: var(--sp-theme-primary) !important;
-    }
-    .bg-primary {
-        background-color: rgba(var(--sp-theme-primary), var(--bs-bg-opacity)) !important;
-    }
-    .dropdown-item.active, .dropdown-item:active {
-        background-color: var(--sp-theme-primary);
-    }
-    .form-check-input:checked {
-        background-color: var(--sp-theme-primary);
-        border-color: var(--sp-theme-primary);
-    }
-    .form-check-input:focus {
-        background-color: var(--sp-theme-dark);
-        border-color: var(--sp-theme-dark);
-    }
-    .nav-link, .page-link {
-        color: var(--sp-theme-primary);
-    }
-    .btn-outline-primary {
-        border-color: var(--sp-theme-primary);
-        color: var(--sp-theme-primary);
-    }
-    .btn-outline-primary:hover {
-        background-color: var(--sp-theme-dark-alt);
-        border-color: var(--sp-theme-dark-alt);
-    }
-    .btn-check:checked+.btn, :not(.btn-check)+.btn:active, .btn:first-child:active, .btn.active, .btn.show {
-        background-color: var(--sp-theme-dark);
-        border-color: var(--sp-theme-dark);
-        color: var(--sp-primary-button-text);
-    }
-    .btn-outline-primary:active, .list-group-item.active, .nav-tabs .nav-link.active, .nav-tabs .nav-link:focus, .page-link:focus {
-        background-color: var(--sp-theme-dark);
-        border-color: var(--sp-theme-dark);
-    }
-    .btn-primary, .nav-tabs .show>.nav-link {
-        background-color: var(--sp-theme-primary);
-        border-color: var(--sp-theme-primary);
-    }
-    .form-range::-webkit-slider-thumb {
-        background-color: var(--sp-theme-primary);
-    }
-    .mw-0 {
-        min-width: 0px !important;
-    }
-}
+.icon-links {
+    .bs {
+        .bg-sharepoint {
+            background-color: var(--sp-theme-primary) !important;
+        }
 
-/** Edit Links Button SVG */
-.btn-img {
-    margin: 0 0.25rem 0.1rem -0.25rem;
-}
+        .bg-primary {
+            background-color: rgba(var(--sp-theme-primary), var(--bs-bg-opacity)) !important;
+        }
 
-.icon-dt {
-    height: 32px;
-    width: 32px;
-    path {
-        fill: var(--sp-neutral-dark);
-    }
-}
+        .dropdown-item.active,
+        .dropdown-item:active {
+            background-color: var(--sp-theme-primary);
+        }
 
-.icon-rect, .icon-sqre  {
-    border-radius: var(--bs-border-radius);
-    display: flex;
-    margin: .25rem;
-    padding: .25rem;
+        .form-check-input:checked {
+            background-color: var(--sp-theme-primary);
+            border-color: var(--sp-theme-primary);
+        }
 
-    .icon-text {
-        display: -webkit-box;
-        font-weight: 500;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-    }
-}
+        .form-check-input:focus {
+            background-color: var(--sp-theme-dark);
+            border-color: var(--sp-theme-dark);
+        }
 
-.icon-rect, .icon-rect:hover, .icon-rect:active, .icon-rect:visited, .icon-sqre, .icon-sqre:hover, .icon-sqre:active, .icon-sqre:visited {
-    text-decoration: none;
-}
+        .nav-link,
+        .page-link {
+            color: var(--sp-theme-primary);
+        }
 
-.icon-rect {
-    align-items: center;
-    border: 2px solid var(--sp-theme-primary);
-    color: var(--sp-neutral-dark);
-    flex-direction: row;
-    height: 48px;
-    justify-content: flex-start;
-    width: 248px;
+        .btn-outline-primary {
+            border-color: var(--sp-theme-primary);
+            color: var(--sp-theme-primary);
+        }
 
-    .icon-text {
-        margin: 10px 10px 10px 0;
+        .btn-outline-primary:hover {
+            background-color: var(--sp-theme-dark-alt);
+            border-color: var(--sp-theme-dark-alt);
+        }
+
+        .btn-check:checked+.btn,
+        :not(.btn-check)+.btn:active,
+        .btn:first-child:active,
+        .btn.active,
+        .btn.show {
+            background-color: var(--sp-theme-dark);
+            border-color: var(--sp-theme-dark);
+            color: var(--sp-primary-button-text);
+        }
+
+        .btn-outline-primary:active,
+        .list-group-item.active,
+        .nav-tabs .nav-link.active,
+        .nav-tabs .nav-link:focus,
+        .page-link:focus {
+            background-color: var(--sp-theme-dark);
+            border-color: var(--sp-theme-dark);
+        }
+
+        .btn-primary,
+        .nav-tabs .show>.nav-link {
+            background-color: var(--sp-theme-primary);
+            border-color: var(--sp-theme-primary);
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background-color: var(--sp-theme-primary);
+        }
+
+        .mw-0 {
+            min-width: 0px !important;
+        }
     }
 
-    svg {
-        height: 28px;
-        margin: 0 10px;
-        min-width: fit-content;
-        width: 28px;
+    /** Edit Links Button SVG */
+    .btn-img {
+        margin: 0 0.25rem 0.1rem -0.25rem;
+    }
+
+    .icon-dt {
+        height: 32px;
+        width: 32px;
+
         path {
             fill: var(--sp-neutral-dark);
         }
     }
-}
 
-.icon-rect:visited {
-    color: var(--sp-neutral-dark);
-}
+    .icon-rect,
+    .icon-sqre {
+        border-radius: var(--bs-border-radius);
+        display: flex;
+        margin: .25rem;
+        padding: .25rem;
 
-.icon-rect:hover {
-    background-color: var(--sp-neutral-light);
-    border-color: var(--sp-theme-dark);
-    color: var(--sp-theme-primary);
-}
-
-.icon-rect:active {
-    background-color: var(--sp-neutral-tertiary);
-    border: 2px solid var(--sp-theme-darker);
-    color: var(--sp-primary-button-text);
-    svg path {
-        fill: var(--sp-primary-button-text);
-    }
-}
-
-.icon-sqre {
-    background-color: var(--sp-theme-primary);
-    color: var(--sp-primary-button-text);
-    flex-direction: column;
-    height: 92px;
-    justify-content: center;
-    width: 92px;
-
-    .icon-text {
-        margin: 5px;
-        text-align: center;
+        .icon-text {
+            display: -webkit-box;
+            font-weight: 500;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
     }
 
-    svg {
-        align-self: center;
-        height: 36px;
-        margin: 5px;
-        width: 36px;
-        path {
+    .icon-rect,
+    .icon-rect:hover,
+    .icon-rect:active,
+    .icon-rect:visited,
+    .icon-sqre,
+    .icon-sqre:hover,
+    .icon-sqre:active,
+    .icon-sqre:visited {
+        text-decoration: none;
+    }
+
+    .icon-rect {
+        align-items: center;
+        border: 2px solid var(--sp-theme-primary);
+        color: var(--sp-neutral-dark);
+        flex-direction: row;
+        height: 48px;
+        justify-content: flex-start;
+        width: 248px;
+
+        .icon-text {
+            margin: 10px 10px 10px 0;
+        }
+
+        svg {
+            height: 28px;
+            margin: 0 10px;
+            min-width: fit-content;
+            width: 28px;
+
+            path {
+                fill: var(--sp-neutral-dark);
+            }
+        }
+    }
+
+    .icon-rect:visited {
+        color: var(--sp-neutral-dark);
+    }
+
+    .icon-rect:hover {
+        background-color: var(--sp-neutral-light);
+        border-color: var(--sp-theme-dark);
+        color: var(--sp-theme-primary);
+    }
+
+    .icon-rect:active {
+        background-color: var(--sp-neutral-tertiary);
+        border: 2px solid var(--sp-theme-darker);
+        color: var(--sp-primary-button-text);
+
+        svg path {
             fill: var(--sp-primary-button-text);
         }
     }
-}
 
-.icon-sqre:visited, .tippy-box {
-    color: var(--sp-primary-button-text);
-}
+    .icon-sqre {
+        background-color: var(--sp-theme-primary);
+        color: var(--sp-primary-button-text);
+        flex-direction: column;
+        height: 92px;
+        justify-content: center;
+        width: 92px;
 
-.icon-sqre:hover {
-    background-color: var(--sp-theme-dark);
-}
+        .icon-text {
+            margin: 5px;
+            text-align: center;
+        }
 
-.icon-sqre:active {
-    background-color: var(--sp-neutral-tertiary);
-    box-shadow: inset 0 0 0 2px var(--sp-theme-darker);
-    color: var(--sp-primary-button-text);
-    svg path {
-        fill: var(--sp-primary-button-text);
+        svg {
+            align-self: center;
+            height: 36px;
+            margin: 5px;
+            width: 36px;
+
+            path {
+                fill: var(--sp-primary-button-text);
+            }
+        }
+    }
+
+    .icon-sqre:visited,
+    .tippy-box {
+        color: var(--sp-primary-button-text);
+    }
+
+    .icon-sqre:hover {
+        background-color: var(--sp-theme-dark);
+    }
+
+    .icon-sqre:active {
+        background-color: var(--sp-neutral-tertiary);
+        box-shadow: inset 0 0 0 2px var(--sp-theme-darker);
+        color: var(--sp-primary-button-text);
+
+        svg path {
+            fill: var(--sp-primary-button-text);
+        }
     }
 }
 
@@ -182,6 +221,7 @@ div.spPropertyPaneContainer div[aria-label='Icon Links property pane'] div[data-
     >div:first-child div[role="radiogroup"] div.ms-ChoiceFieldGroup-flexContainer div.ms-ChoiceField-labelWrapper span.ms-Label {
         overflow: initial;
     }
+
     /* Align version to the right */
     >div:last-child label {
         text-align: right;
@@ -202,15 +242,19 @@ div.spPropertyPaneContainer div[aria-label='Icon Links property pane'] div[data-
 .tippy-box[data-theme~='sharepoint'] {
     background-color: var(--sp-theme-dark);
 }
+
 .tippy-box[data-theme~='sharepoint'][data-placement^='top']>.tippy-arrow::before {
     border-top-color: var(--sp-theme-dark);
 }
+
 .tippy-box[data-theme~='sharepoint'][data-placement^='bottom']>.tippy-arrow::before {
     border-bottom-color: var(--sp-theme-dark);
 }
+
 .tippy-box[data-theme~='sharepoint'][data-placement^='left']>.tippy-arrow::before {
     border-left-color: var(--sp-theme-dark);
 }
+
 .tippy-box[data-theme~='sharepoint'][data-placement^='right']>.tippy-arrow::before {
     border-right-color: var(--sp-theme-dark);
 }
